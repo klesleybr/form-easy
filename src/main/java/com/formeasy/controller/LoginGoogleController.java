@@ -1,36 +1,12 @@
 package com.formeasy.controller;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-
 import java.io.IOException;
-
-
-import java.awt.Desktop;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-=======
-import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
->>>>>>> feec8b6 (Login Google: Implementa Aquisição de Dados)
-=======
-import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
->>>>>>> feec8b6 (Login Google: Implementa Aquisição de Dados)
-=======
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
->>>>>>> feec8b6 (Login Google: Implementa Aquisição de Dados)
 import org.springframework.stereotype.Component;
 
 import com.formeasy.model.Usuario;
@@ -73,9 +49,6 @@ public class LoginGoogleController {
     	abrirTelaDeLogin("http://localhost:8080/");   
     }
     
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     void initializite() { 	
 	    Map<String,Object> atributosUsuario = authenticationGoogleController.getDadosUsuario(null);
 	    
@@ -109,28 +82,5 @@ public class LoginGoogleController {
     	stage.show();
     	
     	engine.load(redirecionamentoUrl.getText());
-=======
-=======
->>>>>>> feec8b6 (Login Google: Implementa Aquisição de Dados)
-=======
->>>>>>> feec8b6 (Login Google: Implementa Aquisição de Dados)
-    void initializite() {
-    Map<String,Object> atributosUsuario = authenticationGoogleController.getDadosUsuario(null);
-    
-    String atHash = (String) atributosUsuario.get("at_hash");
-    String sub = (String) atributosUsuario.get("sub");
-	String fotoPerfil = (String) atributosUsuario.get("picture");
-	String nome = (String) atributosUsuario.get("name");
-	String email = (String) atributosUsuario.get("email");
-	boolean emailVerificado = (boolean) atributosUsuario.get("email_verified");
-	
-	Usuario usuario = new Usuario(atHash, sub, nome, fotoPerfil, email, emailVerificado);
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> feec8b6 (Login Google: Implementa Aquisição de Dados)
-=======
->>>>>>> feec8b6 (Login Google: Implementa Aquisição de Dados)
-=======
->>>>>>> feec8b6 (Login Google: Implementa Aquisição de Dados)
     }
 }
