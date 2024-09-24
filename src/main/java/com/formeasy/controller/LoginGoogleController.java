@@ -36,10 +36,7 @@ public class LoginGoogleController {
 	private AuthenticationGoogleController authenticationGoogleController;
 	
     @FXML
-    private Button btnLoginGoogle;
-
-    @FXML
-    private WebView webViewOAuth2Google;   
+    private Button btnLoginGoogle;   
     	
     @FXML
     void onClickLoginGoogle(ActionEvent event) throws IOException{
