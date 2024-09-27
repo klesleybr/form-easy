@@ -44,6 +44,7 @@ public class FormEasyUtil {
 	 * Esta talvez seja a principal função, que será usada por todas as outras na hora de obter requisição
 	 * de serviço.
 	 */
+	
 	private Credential getCredentials(NetHttpTransport HTTP_TRANSPORT) throws IOException {
 		/*
 		 * Carregamento das chaves do arquivo credentials.json, para autenticação com o OAuth2 e 
@@ -94,5 +95,4 @@ public class FormEasyUtil {
 		
 		return attributesUser;
 	}
-	
 }

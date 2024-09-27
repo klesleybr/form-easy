@@ -13,7 +13,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="496.0" prefWidth="883.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.formeasy.controller.LoginGoogleController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="496.0" prefWidth="883.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.formeasy.controller.LoginController">
    <children>
       <Button fx:id="btnLoginGoogle" layoutX="296.0" layoutY="388.0" mnemonicParsing="false" onAction="#onClickLoginGoogle" prefHeight="40.0" prefWidth="292.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000; -fx-border-radius: 6; -fx-font-family: monserrat;" text="ENTRAR COM O GOOGLE" textAlignment="CENTER" textFill="#656565">
          <font>
