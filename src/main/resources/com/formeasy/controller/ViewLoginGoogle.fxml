@@ -34,7 +34,7 @@
          <children>
             <TextField layoutX="15.0" layoutY="15.0" prefHeight="35.0" prefWidth="261.0" promptText="Email" />
             <PasswordField layoutX="16.0" layoutY="62.0" prefHeight="35.0" prefWidth="261.0" promptText="Senha" />
-            <Button layoutX="86.0" layoutY="114.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="130.0" style="-fx-font-family: monserrat; -fx-background-color: #1976D2; -fx-background-radius: 6;" text="ENTRAR" textFill="WHITE">
+            <Button fx:id="btnLogin" layoutX="86.0" layoutY="114.0" mnemonicParsing="false" onAction="#onClickLogin" prefHeight="42.0" prefWidth="130.0" style="-fx-font-family: monserrat; -fx-background-color: #1976D2; -fx-background-radius: 6;" text="ENTRAR" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>

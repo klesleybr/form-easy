@@ -39,12 +39,28 @@ import net.rgielen.fxweaver.core.FxmlView;
 @Component
 @FxmlView("ViewLoginGoogle.fxml")
 public class LoginGoogleController {
+	
+	RedirectController redirect = new RedirectController();
+	
 	@Autowired
 	private DashboardController dashboardController;
 	
+	@FXML
+	private Button btnLogin;
+	 
     @FXML
     private Button btnLoginGoogle;   
     	
+    
+    @FXML
+    void onClickLogin(ActionEvent event) throws IOException {
+    	// Funcionou com "WelcomeView.fxml"
+    	String title = "Olá, usuário";
+    	String path = "WelcomeView.fxml";
+    	
+    	redirect.loadNextView(title, path);
+    }
+    
     @FXML
     void onClickLoginGoogle(ActionEvent event) throws IOException, URISyntaxException{
     	System.out.println("Botão clicado");
@@ -123,6 +139,12 @@ public class LoginGoogleController {
         		System.out.println("Código de autorização: " + authCode);
         		
         		stage.close();
+        		
+        		try {
+					redirect.loadNextView("Bem-Vindo, usuário", "WelcomeView.fxml");
+				} catch (IOException e) {					
+					e.printStackTrace();
+				}
     		}
     		else {
     			System.out.println("Nenhum código encontrado ainda...");
