@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button fx:id="botao_adicionar" layoutX="234.0" layoutY="286.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="132.0" textFill="WHITE" />
+      <Label fx:id="texto_adicionar" layoutX="275.0" layoutY="290.0" text="Adicionar" textFill="#ff5c00" />
+      <Label fx:id="texto_sem_formulario" layoutX="209.0" layoutY="254.0" text="Você ainda não possui formulários" textFill="#005099" />
+      <Rectangle fx:id="header" arcHeight="5.0" arcWidth="5.0" fill="#005099" height="69.0" stroke="#005099" strokeType="INSIDE" width="600.0" />
+      <Circle fx:id="circulo_header" fill="WHITE" layoutX="563.0" layoutY="35.0" radius="23.0" stroke="WHITE" strokeType="INSIDE" />
+      <Label fx:id="texto1_header" layoutX="238.0" layoutY="25.0" text="Acessar formulários " textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="texto2_header" layoutX="441.0" layoutY="25.0" prefHeight="20.0" prefWidth="46.0" text="Menu" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="formeasy_foto" fitHeight="150.0" fitWidth="200.0" layoutX="9.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../FormEasy.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="mulher_prancheta" fitHeight="150.0" fitWidth="200.0" layoutX="230.0" layoutY="104.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../mulher_prancheta.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
