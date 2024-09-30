@@ -22,9 +22,9 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <ImageView fx:id="formeasy_foto" fitHeight="150.0" fitWidth="200.0" layoutX="9.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="formeasy_foto" fitHeight="46.0" fitWidth="195.0" layoutX="9.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../FormEasy.png" />
+            <Image url="@../main/resources/images/FormEasy.png" />
          </image>
       </ImageView>
       
