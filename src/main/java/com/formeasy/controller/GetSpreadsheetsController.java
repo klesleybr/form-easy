@@ -26,7 +26,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import net.rgielen.fxweaver.core.FxmlView;
 
-@FxmlView("GetSpreadsheetsView.fxml")
+@FxmlView("GetSpreadsheetsExampleView.fxml")
 public class GetSpreadsheetsController implements Initializable {
 	@Autowired
 	DashboardController dashboard = new DashboardController();

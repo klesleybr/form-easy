@@ -47,8 +47,8 @@ public class LoginController{
     	// Este método ficará assim apenas para fins de teste.
     	
     	String title = "Olá, usuário";
-    	String path = "WelcomeView.fxml";
-    	redirect.loadNewStage(title, "GetSpreadsheetsView.fxml");
+    	String path = "GetSpreadsheetsExampleView.fxml";
+    	redirect.loadNewStage(title, path);
     }
     
     @FXML

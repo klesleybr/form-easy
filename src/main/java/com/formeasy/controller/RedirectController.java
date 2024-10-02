@@ -45,8 +45,9 @@ public class RedirectController {
 	}
 	// Novo método
 	public void loadNewSceneWeaver(Node viewElement, Class controller) {
+		
+		// Em produção...
 		Stage atualStage = (Stage) viewElement.getScene().getWindow();
-		
-		
+	
 	}
 }
