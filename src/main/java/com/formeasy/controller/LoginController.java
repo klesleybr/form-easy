@@ -7,9 +7,8 @@ import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.List;
 
-
 import org.springframework.stereotype.Component;
-
+import org.springframework.stereotype.Service;
 
 import com.google.api.services.people.v1.PeopleServiceScopes;
 import com.google.api.services.sheets.v4.SheetsScopes;
@@ -28,7 +27,10 @@ import net.rgielen.fxweaver.core.FxmlView;
 
 @Component
 @FxmlView("LoginView.fxml")
-public class LoginController {
+
+// Nova notação Service
+@Service
+public class LoginController{
 	RedirectController redirect = new RedirectController();
 	
 	@FXML
@@ -46,7 +48,7 @@ public class LoginController {
     	
     	String title = "Olá, usuário";
     	String path = "WelcomeView.fxml";
-    	redirect.loadNextView(title, path);
+    	redirect.loadNewStage(title, "GetSpreadsheetsView.fxml");
     }
     
     @FXML
@@ -55,9 +57,10 @@ public class LoginController {
     	openSuperimposedLoginView("http://localhost:8080/attributesuser"); 	
     }
     
-    void initializite() { 	
-	   
+    @FXML
+    public void initialize() {
     	
+	   
     }
     
     private void openSuperimposedLoginView(String url) {
@@ -86,9 +89,12 @@ public class LoginController {
     	String urlAuthentication = "https://accounts.google.com/o/oauth2/auth?access_type=offline&"
                 + "client_id=" + CLIENT_ID
                 + "&redirect_uri=" + REDIRECT_URI
-                + "&response_type=code&scope=" + SCOPES.get(0) + " " + SCOPES.get(1) + " " 
-                + SCOPES.get(2) + " " + SCOPES.get(3);
+                + "&response_type=code&scope=" + SCOPES.get(0) + "%20" + SCOPES.get(1) + "%20" 
+                + SCOPES.get(2) + "%20" + SCOPES.get(3);
+    	
+    	engine.load(url);
     	engine.load(urlAuthentication);
+    	
     	
     	engine.locationProperty().addListener((observable, oldValue, newValue) -> {
     		if(newValue.contains("code=")) {
@@ -102,7 +108,7 @@ public class LoginController {
         		stage.close();
         		
         		try {
-					redirect.loadNextView("Olá, usuário", "WelcomeView.fxml");
+					redirect.loadNewStage("Olá, usuário", "WelcomeView.fxml");
 				} catch (IOException e) {					
 					e.printStackTrace();
 				}

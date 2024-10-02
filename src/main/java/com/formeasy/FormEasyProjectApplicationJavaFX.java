@@ -14,6 +14,9 @@ import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxWeaver;
 
 public class FormEasyProjectApplicationJavaFX extends Application {
+	/*
+	 * A partir do contextoSpring, acessamos as beans do Spring.
+	 */
 	private ConfigurableApplicationContext contextoSpring;
 	
 	@Override
@@ -42,7 +45,7 @@ public class FormEasyProjectApplicationJavaFX extends Application {
 		Parent root = fxWeaver.loadView(LoginController.class);
 		Scene scene = new Scene(root);
 		
-		Image icon = new Image(getClass().getResourceAsStream("/images/logo-horizontal.png"));
+		Image icon = new Image(getClass().getResourceAsStream("/images/logo-quadrada2.png"));
 		primaryStage.setScene(scene);
 		primaryStage.resizableProperty().setValue(Boolean.FALSE);
 		primaryStage.setTitle("Form Easy");
