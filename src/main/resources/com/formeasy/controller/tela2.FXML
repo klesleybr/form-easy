@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Rectangle fx:id="header" arcHeight="5.0" arcWidth="5.0" fill="#005099" height="69.0" stroke="#005099" strokeType="INSIDE" width="600.0" />
+      <Circle fx:id="circulo_header" fill="WHITE" layoutX="563.0" layoutY="35.0" radius="23.0" stroke="WHITE" strokeType="INSIDE" />
+      <Label fx:id="texto1_header" layoutX="238.0" layoutY="25.0" text="Acessar formulários " textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="texto2_header" layoutX="441.0" layoutY="25.0" prefHeight="20.0" prefWidth="46.0" text="Menu" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="formeasy_foto" fitHeight="46.0" fitWidth="195.0" layoutX="9.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/logo-horizontal.png" />
+         </image>
+      </ImageView>
+      
+      <!-- Retângulo adicional com bordas arredondadas -->
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="63.0" layoutX="148.0" layoutY="75.0" stroke="#C0C0C0" strokeWidth="1.5" width="286.0" />
+      
+      <!-- Faixa cinza com texto "Título" -->
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#C0C0C0" height="21.0" layoutX="148.0" layoutY="75.0" stroke="#C0C0C0" strokeWidth="1.5" width="286.0" />
+      <Label fx:id="titulo1" layoutX="155.0" layoutY="95.0" text="Título" textFill="#7e7e7e">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+
+      <!-- Texto "Descrição do formulário" abaixo do título -->
+      <Label fx:id="descricao_formulario1" layoutX="156.0" layoutY="122.0" text="Descrição do formulário" textFill="#b1b1b1">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label fx:id="exibir_respostas1" layoutX="358.0" layoutY="120.0" text="Exibir respostas" textFill="#7e7e7e">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="63.0" layoutX="148.0" layoutY="154.0" stroke="#C0C0C0" strokeWidth="1.5" width="286.0" />
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#C0C0C0" height="23.0" layoutX="148.0" layoutY="154.0" stroke="#C0C0C0" strokeWidth="1.5" width="286.0" />
+      <Label fx:id="titulo2" layoutX="155.0" layoutY="175.0" text="Título" textFill="#7e7e7e">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="descricao_formulario2" layoutX="156.0" layoutY="200.0" text="Descrição do formulário" textFill="#b1b1b1">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label fx:id="exibir_respostas2" layoutX="358.0" layoutY="200.0" text="Exibir respostas" textFill="#7e7e7e">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="63.0" layoutX="148.0" layoutY="238.0" stroke="#C0C0C0" strokeWidth="1.5" width="286.0" />
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#C0C0C0" height="23.0" layoutX="148.0" layoutY="238.0" stroke="#C0C0C0" strokeWidth="1.5" width="286.0" />
+      <Label fx:id="descricao_formulario3" layoutX="156.0" layoutY="282.0" text="Descrição do formulário" textFill="#b1b1b1">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label fx:id="exibir_respostas3" layoutX="358.0" layoutY="282.0" text="Exibir respostas" textFill="#7e7e7e">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label fx:id="titulo3" layoutX="155.0" layoutY="260.0" text="Título" textFill="#7e7e7e">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="63.0" layoutX="148.0" layoutY="322.0" stroke="#C0C0C0" strokeWidth="1.5" width="286.0" />
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#C0C0C0" height="23.0" layoutX="148.0" layoutY="322.0" stroke="#C0C0C0" strokeWidth="1.5" width="286.0" />
+      <Label fx:id="exibir_respostas4" layoutX="358.0" layoutY="365.0" text="Exibir respostas" textFill="#7e7e7e">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label fx:id="titulo4" layoutX="155.0" layoutY="343.0" text="Título" textFill="#7e7e7e">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="descricao_formulario4" layoutX="156.0" layoutY="367.0" text="Descrição do formulário" textFill="#b1b1b1">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
