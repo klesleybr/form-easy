@@ -27,7 +27,7 @@ import com.google.api.services.people.v1.PeopleService;
 import com.google.api.services.people.v1.PeopleServiceScopes;
 import com.google.api.services.sheets.v4.SheetsScopes;
 
-public class TesteGoogleSheetsApi {
+public class TesteLitGoogleSheetsApi {
 	
 	private static final String APPLICATION_NAME = "Teste Google Sheets";
 	private static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();

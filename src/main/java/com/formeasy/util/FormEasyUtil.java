@@ -18,6 +18,8 @@ import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
+import com.google.api.client.googleapis.json.GoogleJsonError;
+import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.gson.GsonFactory;
@@ -28,7 +30,10 @@ import com.google.api.services.drive.model.FileList;
 import com.google.api.services.people.v1.PeopleService;
 import com.google.api.services.people.v1.PeopleServiceScopes;
 import com.google.api.services.people.v1.model.Person;
+import com.google.api.services.sheets.v4.Sheets;
 import com.google.api.services.sheets.v4.SheetsScopes;
+import com.google.api.services.sheets.v4.model.BatchGetValuesResponse;
+import com.google.api.services.sheets.v4.model.ValueRange;
 
 @Component
 public class FormEasyUtil {
@@ -82,10 +87,10 @@ public class FormEasyUtil {
 	 */
 	
 	private PeopleService getPeopleService() throws GeneralSecurityException, IOException {
-		NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
-		
+		final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();		
 		PeopleService peopleService = new PeopleService.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
 				.setApplicationName(APPLICATION_NAME).build();
+		
 		return peopleService;
 	}
 	public Map<String,String> getAttributesUser() throws IOException, GeneralSecurityException{
@@ -102,7 +107,7 @@ public class FormEasyUtil {
 	private Drive getDriveService() throws GeneralSecurityException, IOException {
 		final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
 		Drive driveService = new Drive.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
-				.build();
+				.setApplicationName(APPLICATION_NAME).build();
 		
 		return driveService;
 	}
@@ -119,5 +124,59 @@ public class FormEasyUtil {
 		
 		List<File> files = result.getFiles();
 		return files;
+	}
+	
+	private Sheets getSheetsService() throws GeneralSecurityException, IOException {
+		final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+		Sheets sheetsService = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
+				.setApplicationName(APPLICATION_NAME).build();
+		
+		return sheetsService;
+	}
+	/*
+	 * Essa função deve ser usada para buscar intervalos simples, contínuos, na planilha.
+	 */
+	public ValueRange getSheetsDataAsValueRange(String spreadsheetId, String range) 
+			throws GeneralSecurityException, IOException {
+		Sheets sheets = getSheetsService();
+		ValueRange result = null;
+				
+		try {
+			result = sheets.spreadsheets().values().get(spreadsheetId, range).execute();
+		} catch(GoogleJsonResponseException e) {
+			GoogleJsonError error = e.getDetails();
+			if(error.getCode() == 404) {
+				System.out.println("ERRO: Não foi localizada a planilha de id " + spreadsheetId);
+			} else {
+				throw e;
+			}
+		}
+		
+		return result;
+	}
+	
+	/*
+	 * Essa função deve ser usada para buscar intervalos descontínuos de células de uma planilha.
+	 * Os parâmetros são o ID da planilha e uma lista de intervalos quaisquer.
+	 * A função retorna o ID da planilha e um List<ValueRange> para os intervalos passados como parâmetro.
+	 */
+	public BatchGetValuesResponse getSheetsDataAsBatchGet(String spreadsheetId, List<String> ranges) 
+			throws GeneralSecurityException, IOException {
+		Sheets sheets = getSheetsService();
+		BatchGetValuesResponse result = null;
+		
+		try {
+			result = sheets.spreadsheets().values().batchGet(spreadsheetId).setRanges(ranges)
+					.execute();
+		} catch(GoogleJsonResponseException e) {
+			GoogleJsonError error = e.getDetails();
+			if(error.getCode() == 404) {
+				System.out.println("ERRO: Não foi localizada a planilha de id " + spreadsheetId);
+			} else {
+				throw e;
+			}
+		}
+		
+		return result;
 	}
 }

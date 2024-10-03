@@ -108,7 +108,7 @@ public class LoginController{
         		stage.close();
         		
         		try {
-					redirect.loadNewStage("Olá, usuário", "WelcomeView.fxml");
+					redirect.loadNewStage("Olá, usuário", "GetSpreadsheetsExampleView.fxml");
 				} catch (IOException e) {					
 					e.printStackTrace();
 				}

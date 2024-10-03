@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 
+// Classe incompleta
 
 public class RedirectController {	
 	// Novo objeto
