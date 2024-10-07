@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.formeasy.service.FormEasyService;
 
 import com.google.api.services.drive.model.File;
+import com.google.api.services.forms.v1.model.Form;
 import com.google.api.services.sheets.v4.model.BatchGetValuesResponse;
 import com.google.api.services.sheets.v4.model.ValueRange;
 
@@ -32,6 +33,11 @@ public class DashboardController {
 		return formEasyService.getSheetsUser();
 	}
 	
+	@GetMapping("/formsuser")
+	public List<File> getFormsUser() throws IOException, GeneralSecurityException{
+		return formEasyService.getFormsUser();
+	}
+	
 	@GetMapping("/sheetsdata_valuerange")
 	public ValueRange getSheetsDataAsValueRange(String spreadsheetId, String range) 
 			throws GeneralSecurityException, IOException {
@@ -42,5 +48,10 @@ public class DashboardController {
 	public BatchGetValuesResponse getSheetsDataAsBatchGet(String spreadsheetId, List<String> ranges) 
 			throws GeneralSecurityException, IOException{
 		return formEasyService.getSheetsDataAsBatchGet(spreadsheetId, ranges);
+	}
+	
+	@GetMapping("/getforms")
+	public Form getForm(String formId) throws IOException, GeneralSecurityException{
+		return formEasyService.getForm(formId);
 	}
 }

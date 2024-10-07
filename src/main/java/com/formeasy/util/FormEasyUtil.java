@@ -27,6 +27,9 @@ import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
+import com.google.api.services.forms.v1.Forms;
+import com.google.api.services.forms.v1.FormsScopes;
+import com.google.api.services.forms.v1.model.Form;
 import com.google.api.services.people.v1.PeopleService;
 import com.google.api.services.people.v1.PeopleServiceScopes;
 import com.google.api.services.people.v1.model.Person;
@@ -43,7 +46,8 @@ public class FormEasyUtil {
 	
 	// Nessa parte indicamos os escopos que selecionamos lá nas credenciais do Google Cloud.
 	private static final List<String> SCOPES = Arrays.asList(SheetsScopes.SPREADSHEETS, SheetsScopes.DRIVE, 
-			PeopleServiceScopes.USERINFO_EMAIL, PeopleServiceScopes.USERINFO_PROFILE);
+			PeopleServiceScopes.USERINFO_EMAIL, PeopleServiceScopes.USERINFO_PROFILE,
+			FormsScopes.FORMS_BODY);
 	
 	private static final String CREDENTIALS_FILE_PATH = "/credentials.json";
 	
@@ -125,6 +129,21 @@ public class FormEasyUtil {
 		List<File> files = result.getFiles();
 		return files;
 	}
+	public List<File> getFormsUser() throws IOException, GeneralSecurityException {
+		Drive drive = getDriveService();
+		
+		/*
+		 * A string abaixo serve como um filtro. Ela indica em qual pasta os arquivos devem ser consultados.
+		 * Esta pasta é uma pasta especial no Drive, onde ficam as planilhas do Google Forms.
+		 */
+		String queryFilter = "mimeType='application/vnd.google-apps.form'";
+		FileList result = drive.files().list().setQ(queryFilter).setFields("files(id, name)")
+				.execute();
+		
+		List<File> files = result.getFiles();
+		return files;
+	}
+	
 	
 	private Sheets getSheetsService() throws GeneralSecurityException, IOException {
 		final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
@@ -178,5 +197,17 @@ public class FormEasyUtil {
 		}
 		
 		return result;
+	}
+	
+	private Forms getFormsService() throws GeneralSecurityException, IOException {
+		NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+		Forms formsService = new Forms.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
+				.setApplicationName(APPLICATION_NAME).build();
+		
+		return formsService;
+	}
+	public Form getForm(String formId) throws IOException, GeneralSecurityException {
+		Form form = getFormsService().forms().get(formId).execute();
+		return form;
 	}
 }

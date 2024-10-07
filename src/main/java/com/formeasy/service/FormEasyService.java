@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.formeasy.util.FormEasyUtil;
 import com.google.api.services.drive.model.File;
+import com.google.api.services.forms.v1.model.Form;
 import com.google.api.services.sheets.v4.model.BatchGetValuesResponse;
 import com.google.api.services.sheets.v4.model.ValueRange;
 
@@ -26,6 +27,10 @@ public class FormEasyService {
 		return formEasyUtil.getSheetsUser();
 	}
 	
+	public List<File> getFormsUser() throws IOException, GeneralSecurityException{
+		return formEasyUtil.getFormsUser();
+	}
+	
 	public ValueRange getSheetsDataAsValueRange(String spreadsheetId, String range) 
 			throws GeneralSecurityException, IOException {
 		return formEasyUtil.getSheetsDataAsValueRange(spreadsheetId, range);
@@ -34,5 +39,9 @@ public class FormEasyService {
 	public BatchGetValuesResponse getSheetsDataAsBatchGet(String spreadsheetId, List<String> ranges) 
 			throws GeneralSecurityException, IOException{
 		return formEasyUtil.getSheetsDataAsBatchGet(spreadsheetId, ranges);
+	}
+	
+	public Form getForm(String formId) throws IOException, GeneralSecurityException{
+		return formEasyUtil.getForm(formId);
 	}
 }
