@@ -195,6 +195,8 @@ public class ListFormsController {
     	
     	List<List<Object>> listaPerguntasPercentual = new ArrayList<>();
     	
+    	
+    	
     	for(List<Object> listaForms : listaQuestaoRespostaMaior) {
     		List<Object> perguntasPercentual = new ArrayList<>();
     		
@@ -208,6 +210,10 @@ public class ListFormsController {
     		
     		float quantidadeDeRespostas = 0;
     		float totalDeRespostas = spreadsheet.size() - 1;
+    		
+    		//Teste = O que estava dando erro era esse objeto mal alocado.
+    		// Ele estava, antes, fora deste loop...
+        	float quantidadeNaoOutro = 0;
     		
     		for(Object possivelResposta : listaForms) {
     			quantidadeDeRespostas = 0;
@@ -223,15 +229,20 @@ public class ListFormsController {
 							
 						}
 						System.out.println("Quantidade de respostas|: " + quantidadeDeRespostas);
+						
 					}
-					
+    				quantidadeDeRespostas = totalDeRespostas - quantidadeNaoOutro;
+    				System.out.println(quantidadeDeRespostas + ", " + totalDeRespostas + ", " + quantidadeNaoOutro);					
 				}
     			else {
     				for(List<Object> listaSheets : spreadsheet) {
         				if(listaSheets.get(indiceDaColunaCerta).equals(possivelResposta)) {
         					quantidadeDeRespostas ++;
-        				}    				
-        			}    				
+        					quantidadeNaoOutro ++;
+        				}   
+        				
+        			}   
+    				
     			}
     			
     			float valorEmFormaPercentual = quantidadeDeRespostas / totalDeRespostas * 100;
