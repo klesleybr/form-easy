@@ -46,9 +46,10 @@ public class LoginController{
     	// O path funcionou somente com "WelcomeView.fxml"
     	// Este método ficará assim apenas para fins de teste.
     	
-    	String title = "Olá, usuário";
-    	String path = "ListFormsExampleView.fxml";
+    	String title = "Login com o Google";
+    	String path = "WelcomeView.fxml";
     	redirect.loadNewStage(title, path);
+    	redirect.closeCurrentStage(btnLogin);
     }
     
     @FXML
@@ -108,7 +109,8 @@ public class LoginController{
         		stage.close();
         		
         		try {
-					redirect.loadNewStage("Olá, usuário", "GetSpreadsheetsExampleView.fxml");
+					redirect.loadNewStage("Bem-vindo - Tela Inicial", "WelcomeView.fxml");
+					redirect.closeCurrentStage(btnLogin);
 				} catch (IOException e) {					
 					e.printStackTrace();
 				}

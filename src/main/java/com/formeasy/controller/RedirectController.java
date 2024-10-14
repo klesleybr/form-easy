@@ -34,6 +34,11 @@ public class RedirectController {
 		newStage.show();
 	}
 	
+	public void closeCurrentStage(Node viewElement) {
+		Stage currentStage = (Stage) viewElement.getScene().getWindow();
+		currentStage.close();
+	}
+	
 	
 	// Novo método
 	@FXML
