@@ -48,7 +48,7 @@ public class FormEasyProjectApplicationJavaFX extends Application {
 		Image icon = new Image(getClass().getResourceAsStream("/images/logo-quadrada2.png"));
 		primaryStage.setScene(scene);
 		primaryStage.resizableProperty().setValue(Boolean.FALSE);
-		primaryStage.setTitle("Form Easy");
+		primaryStage.setTitle("Form Easy - Login");
 		primaryStage.getIcons().add(icon);
 		primaryStage.show();
 		

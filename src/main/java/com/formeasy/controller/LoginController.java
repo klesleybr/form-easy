@@ -46,7 +46,7 @@ public class LoginController{
     	// O path funcionou somente com "WelcomeView.fxml"
     	// Este método ficará assim apenas para fins de teste.
     	
-    	String title = "Login com o Google";
+    	String title = "Menu";
     	String path = "WelcomeView.fxml";
     	redirect.loadNewStage(title, path);
     	redirect.closeCurrentStage(btnLogin);
@@ -80,7 +80,7 @@ public class LoginController{
     			redirecionamentoUrl.setText(newValue));
     	
     	Stage stage = new Stage();
-    	Image icon = new Image(getClass().getResourceAsStream("/images/logo-horizontal.png"));
+    	Image icon = new Image(getClass().getResourceAsStream("/images/logo-quadrada2.png"));
     	stage.setTitle("Fazer login com o Google");
     	stage.getIcons().add(icon);
     	stage.setScene(new Scene(root, 1000, 700));
@@ -109,7 +109,7 @@ public class LoginController{
         		stage.close();
         		
         		try {
-					redirect.loadNewStage("Bem-vindo - Tela Inicial", "WelcomeView.fxml");
+					redirect.loadNewStage("Menu", "WelcomeView.fxml");
 					redirect.closeCurrentStage(btnLogin);
 				} catch (IOException e) {					
 					e.printStackTrace();
