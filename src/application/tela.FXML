@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <StackPane layoutX="51.0" layoutY="95.0" prefHeight="150.0" prefWidth="499.0" AnchorPane.bottomAnchor="155.0" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="95.0">
+         <children>
+            <Button fx:id="botao_adicionar" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="25.0" prefWidth="119.0" textFill="WHITE">
+               <graphic>
+                  <Label fx:id="texto_adicionar" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="86.0" text="Adicionar" textFill="#ff5c00" />
+               </graphic>
+               <StackPane.margin>
+                  <Insets bottom="100.0" left="150.0" right="150.0" top="450.0" />
+               </StackPane.margin>
+            </Button>
+            <Label fx:id="texto_sem_formulario" alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="322.0" text="Você ainda não possui formulários" textAlignment="CENTER" textFill="#005099">
+               <StackPane.margin>
+                  <Insets top="250.0" />
+               </StackPane.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="211.0" fitWidth="202.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../mulher_prancheta.png" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+      <AnchorPane layoutY="-2.0" prefHeight="72.0" prefWidth="600.0" style="-fx-background-color: #005099;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <Circle fx:id="circulo_header" fill="WHITE" layoutX="563.0" layoutY="35.0" radius="23.0" stroke="WHITE" strokeType="INSIDE" AnchorPane.rightAnchor="14.0" />
+      <Label fx:id="texto1_header" alignment="CENTER" contentDisplay="CENTER" layoutX="238.0" layoutY="25.0" text="Acessar formulários " textFill="WHITE" AnchorPane.leftAnchor="238.0" AnchorPane.rightAnchor="228.0" AnchorPane.topAnchor="25.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="texto2_header" layoutX="441.0" layoutY="25.0" prefHeight="20.0" prefWidth="46.0" text="Menu" textFill="WHITE" AnchorPane.rightAnchor="113.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="formeasy_foto" fitHeight="150.0" fitWidth="200.0" layoutX="9.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../FormEasy.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

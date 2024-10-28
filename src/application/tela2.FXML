@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="72.0" prefWidth="600.0" style="-fx-background-color: #005099;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label fx:id="texto2_header" layoutX="451.0" layoutY="26.0" prefHeight="20.0" prefWidth="46.0" text="Menu" textFill="WHITE" AnchorPane.rightAnchor="103.0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="texto1_header" alignment="CENTER" contentDisplay="CENTER" layoutX="205.0" layoutY="26.0" prefHeight="21.0" prefWidth="190.0" text="Acessar formulários " textFill="WHITE" AnchorPane.leftAnchor="205.0" AnchorPane.rightAnchor="205.0" AnchorPane.topAnchor="26.0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Circle fx:id="circulo_header" fill="WHITE" layoutX="563.0" layoutY="35.0" radius="23.0" stroke="WHITE" strokeType="INSIDE" AnchorPane.rightAnchor="14.0" />
+      <ImageView fx:id="formeasy_foto" fitHeight="150.0" fitWidth="200.0" layoutX="9.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../FormEasy.png" />
+         </image>
+      </ImageView>
+      <Pane layoutX="170.0" layoutY="168.0" prefHeight="65.0" prefWidth="288.0" style="-fx-border-color: #bcbcbc; -fx-border-radius: 0px 0px 5px 5px; -fx-background-color: white;" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="142.0" />
+      <Pane layoutX="170.0" layoutY="163.0" prefHeight="21.0" prefWidth="288.0" style="-fx-background-color: #bcbcbc; -fx-background-radius: 5px 5px 0px 0px;" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="142.0" />
+      <Label id="titulo2" fx:id="titulo11" layoutX="175.0" layoutY="185.0" text="Título" textFill="#7e7e7e">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label id="descricacao_formulario2" fx:id="descricao_formulario11" layoutX="176.0" layoutY="212.0" text="Descrição do formulário" textFill="#b1b1b1">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label id="exibir_resposta2" fx:id="exibir_respostas11" layoutX="378.0" layoutY="210.0" text="Exibir respostas" textFill="#7e7e7e" AnchorPane.rightAnchor="153.0">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Pane layoutX="170.0" layoutY="238.0" prefHeight="72.0" prefWidth="288.0" style="-fx-border-color: #bcbcbc; -fx-border-radius: 0px 0px 5px 5px; -fx-background-color: white;" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="142.0" />
+      <Label id="titulo3" fx:id="titulo111" layoutX="175.0" layoutY="263.0" text="Título" textFill="#7e7e7e">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label id="descricacao_formulario3" fx:id="descricao_formulario111" layoutX="176.0" layoutY="290.0" text="Descrição do formulário" textFill="#b1b1b1">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label id="exibir_resposta3" fx:id="exibir_respostas111" layoutX="378.0" layoutY="288.0" text="Exibir respostas" textFill="#7e7e7e" AnchorPane.rightAnchor="153.0">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Pane layoutX="170.0" layoutY="239.0" prefHeight="21.0" prefWidth="288.0" style="-fx-background-color: #bcbcbc; -fx-background-radius: 5px 5px 0px 0px;" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="142.0" />
+      <Pane layoutX="170.0" layoutY="328.0" prefHeight="65.0" prefWidth="288.0" style="-fx-border-color: #bcbcbc; -fx-border-radius: 0px 0px 5px 5px; -fx-background-color: white;" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="142.0" />
+      <Label id="titulo4" fx:id="titulo1111" layoutX="175.0" layoutY="346.0" text="Título" textFill="#7e7e7e">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label id="descricacao_formulario4" fx:id="descricao_formulario1111" layoutX="176.0" layoutY="373.0" text="Descrição do formulário" textFill="#b1b1b1">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Pane layoutX="170.0" layoutY="322.0" prefHeight="21.0" prefWidth="288.0" style="-fx-background-color: #bcbcbc; -fx-background-radius: 5px 5px 0px 0px;" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="142.0" />
+      <Label id="exibir_resposta4" fx:id="exibir_respostas1111" layoutX="378.0" layoutY="373.0" text="Exibir respostas" textFill="#7e7e7e" AnchorPane.rightAnchor="153.0">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Pane layoutX="170.0" layoutY="87.0" prefHeight="65.0" prefWidth="288.0" style="-fx-border-color: #bcbcbc; -fx-border-radius: 0px 0px 5px 5px; -fx-background-color: white;" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="142.0" />
+      <Pane layoutX="170.0" layoutY="82.0" prefHeight="21.0" prefWidth="288.0" style="-fx-background-color: #bcbcbc; -fx-background-radius: 5px 5px 0px 0px;" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="142.0" />
+      <Label id="titulo1" fx:id="titulo112" layoutX="175.0" layoutY="104.0" text="Título" textFill="#7e7e7e">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label id="descricacao_formulario1" fx:id="descricao_formulario112" layoutX="176.0" layoutY="131.0" text="Descrição do formulário" textFill="#b1b1b1">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label id="exibir_resposta1" fx:id="exibir_respostas112" layoutX="378.0" layoutY="129.0" text="Exibir respostas" textFill="#7e7e7e" AnchorPane.rightAnchor="153.0">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
