@@ -9,42 +9,42 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1335.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.formeasy.controller.ShowAnswersController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.formeasy.controller.ShowAnswersController">
    <children>
-      <Rectangle fx:id="header" arcHeight="5.0" arcWidth="5.0" fill="#005099" height="126.0" stroke="#005099" strokeType="INSIDE" width="1335.0" />
-      <Circle fx:id="circulo_header" fill="WHITE" layoutX="1244.0" layoutY="64.0" radius="42.0" stroke="WHITE" strokeType="INSIDE" />
-      <Label fx:id="texto1_header" layoutX="570.0" layoutY="41.0" text="Acessar formulários " textFill="WHITE">
+      <Pane layoutX="-5.0" layoutY="-4.0" prefHeight="95.0" prefWidth="805.0" style="-fx-background-color: #005099;" AnchorPane.leftAnchor="-5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-4.0" />
+      <Label fx:id="texto1_header" alignment="CENTER" contentDisplay="CENTER" layoutX="293.0" layoutY="33.0" prefHeight="39.0" prefWidth="177.0" text="Acessar formulários " textFill="WHITE" AnchorPane.leftAnchor="333.0" AnchorPane.rightAnchor="290.0">
          <font>
-            <Font size="27.0" />
+            <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="texto2_header" layoutX="1047.0" layoutY="41.0" prefHeight="39.0" prefWidth="76.0" text="Menu" textFill="WHITE">
+      <Circle fx:id="circulo_header" fill="WHITE" layoutX="751.0" layoutY="49.0" radius="31.0" stroke="WHITE" strokeType="INSIDE" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="18.0" />
+      <Label fx:id="texto2_header" layoutX="599.0" layoutY="35.0" prefHeight="39.0" prefWidth="50.0" text="Menu" textFill="WHITE" AnchorPane.rightAnchor="147.0">
          <font>
-            <Font size="27.0" />
+            <Font size="18.0" />
          </font>
       </Label>
-      <ImageView fx:id="formeasy_foto" fitHeight="99.0" fitWidth="483.0" layoutX="39.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="formeasy_foto" fitHeight="71.0" fitWidth="223.0" layoutX="10.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="567.0">
          <image>
             <Image url="@../../../images/logo-horizontal.png" />
          </image>
       </ImageView>
-      <TableView fx:id="tblShowAnswers" layoutX="151.0" layoutY="213.0" prefHeight="356.0" prefWidth="1010.0" />
-      <Button fx:id="btnSearchForms" layoutX="786.0" layoutY="615.0" mnemonicParsing="false" onAction="#onClickBtnSearchForms" prefHeight="36.0" prefWidth="161.0" text="Procurar Formulários">
+      <TableView fx:id="tblShowAnswers" layoutX="67.0" layoutY="104.0" prefHeight="225.0" prefWidth="676.0" AnchorPane.bottomAnchor="271.0" AnchorPane.leftAnchor="67.0" AnchorPane.rightAnchor="57.0" AnchorPane.topAnchor="104.0" />
+      <Button fx:id="btnSearchForms" alignment="CENTER" contentDisplay="CENTER" layoutX="316.0" layoutY="485.0" mnemonicParsing="false" onAction="#onClickBtnSearchForms" prefHeight="31.0" prefWidth="223.0" text="Procurar Formulários" AnchorPane.leftAnchor="316.0" AnchorPane.rightAnchor="261.0" AnchorPane.topAnchor="485.0">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <ChoiceBox fx:id="cbxListForms" layoutX="364.0" layoutY="615.0" prefHeight="36.0" prefWidth="406.0" />
-      <Button fx:id="btnSearchAnswers" layoutX="411.0" layoutY="662.0" mnemonicParsing="false" onAction="#onClickBtnSearchAnswers" prefHeight="36.0" prefWidth="349.0" text="Mostrar Respostas">
+      <ChoiceBox fx:id="cbxListForms" layoutX="316.0" layoutY="529.0" prefHeight="25.0" prefWidth="223.0" AnchorPane.leftAnchor="316.0" AnchorPane.rightAnchor="261.0" AnchorPane.topAnchor="529.0" />
+      <Button fx:id="btnSearchAnswers" contentDisplay="CENTER" layoutX="316.0" layoutY="437.0" mnemonicParsing="false" onAction="#onClickBtnSearchAnswers" prefHeight="31.0" prefWidth="223.0" text="Mostrar Respostas" AnchorPane.leftAnchor="316.0" AnchorPane.rightAnchor="261.0" AnchorPane.topAnchor="437.0">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <CheckBox fx:id="chbxPercentage" layoutX="778.0" layoutY="668.0" mnemonicParsing="false" text="Exibir estatísticas">
+      <CheckBox fx:id="chbxPercentage" alignment="CENTER" contentDisplay="CENTER" layoutX="316.0" layoutY="568.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="223.0" text="Exibir estatísticas" AnchorPane.leftAnchor="316.0" AnchorPane.rightAnchor="261.0" AnchorPane.topAnchor="568.0">
          <font>
             <Font size="15.0" />
          </font>
