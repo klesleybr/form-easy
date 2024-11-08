@@ -29,10 +29,6 @@ import javafx.util.StringConverter;
 public class ShowAnswersController {
 	@Autowired
 	DashboardController dashboard = new DashboardController();
-	RedirectController redirect = new RedirectController();
-	
-    @FXML
-    private Button btnMenu;
 
     @FXML
     private Button btnSearchAnswers;
@@ -50,13 +46,6 @@ public class ShowAnswersController {
     private TableView<List<Object>> tblShowAnswers;
     
     
-    @FXML
-    void onClickBtnMenu(ActionEvent event) throws IOException {
-    	redirect.loadNewStage("Menu", "WelcomeView.fxml");
-    	redirect.closeCurrentStage(btnMenu);
-    }
-    
-    
 	/*
 	 * A função abaixo está relacionada ao botão BUSCAR FORMULÁRIOS. Serve para listar
 	 * os formulários dentro de um ChoiceBox.
@@ -64,9 +53,6 @@ public class ShowAnswersController {
     
     @FXML
     void onClickBtnSearchForms(ActionEvent event) throws IOException, GeneralSecurityException {
-    	if(!(cbxListForms.getItems().isEmpty())) {
-    		cbxListForms.getItems().clear();
-    	}
     	
     	/*
     	 * Vai buscar no Google Drive todos os formulários que o usuário possui e 
