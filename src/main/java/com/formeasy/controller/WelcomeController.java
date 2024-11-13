@@ -49,6 +49,12 @@ public class WelcomeController {
 
     @FXML
     void onClickBtnOptionSend(ActionEvent event) {
+    	try {
+			redirect.loadNewStage("", "EmailView.fxml");
+			redirect.closeCurrentStage(btnOptionSend);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
     }
 

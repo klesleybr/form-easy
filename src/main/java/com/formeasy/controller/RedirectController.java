@@ -22,7 +22,7 @@ public class RedirectController {
 		Image icon = new Image(getClass().getResourceAsStream("/images/logo-quadrada2.png"));
     	newStage.getIcons().add(icon);
 		newStage.setTitle(title);
-		// newStage.resizableProperty().setValue(Boolean.FALSE);
+		newStage.resizableProperty().setValue(Boolean.FALSE);
 		newStage.setScene(newScene);
 		newStage.show();
 	}
