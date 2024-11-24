@@ -2,10 +2,16 @@ package com.formeasy.service;
 
 import org.springframework.stereotype.Service;
 
-import javax.mail.*;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+import jakarta.mail.Authenticator;
+import jakarta.mail.Message;
+import jakarta.mail.MessagingException;
+import jakarta.mail.PasswordAuthentication;
+import jakarta.mail.Session;
+import jakarta.mail.Transport;
+import jakarta.mail.internet.AddressException;
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeMessage;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -17,7 +23,6 @@ public class EmailService {
 	private final String username = "viniciusalves081105@gmail.com";
 	private final String password = "gorz rvwu nyzg tdog"; 
 	
-
     // Método para validar se um e-mail tem um formato válido
     public boolean isValidEmail(String email) {
         if (email == null || email.trim().isEmpty()) {

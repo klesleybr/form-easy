@@ -57,7 +57,7 @@ public class FormEasyUtil {
 	 * de serviço.
 	 */
 	
-	private Credential getCredentials(NetHttpTransport HTTP_TRANSPORT) throws IOException {
+	public Credential getCredentials(NetHttpTransport HTTP_TRANSPORT) throws IOException {
 		/*
 		 * Carregamento das chaves do arquivo credentials.json, para autenticação com o OAuth2 e 
 		 * permissão de credenciais.
@@ -75,7 +75,8 @@ public class FormEasyUtil {
 		GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(
 				HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, SCOPES)
 				.setDataStoreFactory(new FileDataStoreFactory(new java.io.File(TOKENS_DIRECTORY_PATH)))
-				.setAccessType("offline").build();
+				.setAccessType("offline")
+				.build();
 		/*
 		 * Considere uma outra possibilidade: new FileDataStoreFactory(new java.io.File(System.getProperty("user.home"), 
 		 * TOKENS_DIRECTORY_PATH)...
@@ -210,4 +211,5 @@ public class FormEasyUtil {
 		Form form = getFormsService().forms().get(formId).execute();
 		return form;
 	}
+	
 }

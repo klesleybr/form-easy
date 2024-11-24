@@ -8,11 +8,14 @@ import org.springframework.web.multipart.MultipartFile;
 import com.formeasy.service.EmailService;
 import com.formeasy.service.ExcelService;
 
+import jakarta.mail.MessagingException;
+
 import java.io.File;
 import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.util.List;
 
-import javax.mail.MessagingException;
+
 
 @RestController
 @RequestMapping("/api/emails")
@@ -27,7 +30,7 @@ public class EmailController {
 
     // Endpoint para enviar e-mails a partir de uma planilha ou um arquivo de texto
     @PostMapping(value = "/enviar", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<String> sendEmailsFromFile(@RequestParam("file") MultipartFile file, @RequestParam("assunto") String assunto, @RequestParam("descricao") String descricao) throws IOException, MessagingException {
+    public ResponseEntity<String> sendEmailsFromFile(@RequestParam("file") MultipartFile file, @RequestParam("assunto") String assunto, @RequestParam("descricao") String descricao) throws IOException, MessagingException, GeneralSecurityException {
 
         File tempFile = null;
 

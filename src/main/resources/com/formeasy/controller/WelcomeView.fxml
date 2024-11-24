@@ -20,7 +20,7 @@
             <Image url="@../../../images/logo-horizontal.png" />
          </image>
       </ImageView>
-      <Label fx:id="texto1_header" alignment="CENTER" contentDisplay="CENTER" layoutX="293.0" layoutY="33.0" prefHeight="39.0" prefWidth="228.0" text="Acessar Formulários " textFill="WHITE" AnchorPane.leftAnchor="293.0" AnchorPane.rightAnchor="279.0" AnchorPane.topAnchor="33.0">
+      <Label fx:id="texto1_header" alignment="CENTER" contentDisplay="CENTER" layoutX="293.0" layoutY="28.0" prefHeight="39.0" prefWidth="228.0" text="Acessar Formulários " textFill="WHITE" AnchorPane.leftAnchor="293.0" AnchorPane.rightAnchor="279.0" AnchorPane.topAnchor="28.0">
          <font>
             <Font size="18.0" />
          </font>
@@ -36,12 +36,12 @@
             <String fx:value="button" />
             <String fx:value="text" />
          </styleClass></Button>
-      <Label fx:id="texto_sem_formulario" alignment="CENTER" contentDisplay="CENTER" layoutX="258.0" layoutY="422.0" prefHeight="25.0" prefWidth="340.0" text="Não há nada por aqui... tente uma dessas opções:" textFill="#005099" AnchorPane.leftAnchor="258.0" AnchorPane.rightAnchor="202.0">
+      <Label fx:id="texto_sem_formulario" alignment="CENTER" contentDisplay="CENTER" layoutX="258.0" layoutY="414.0" prefHeight="25.0" prefWidth="340.0" text="Não há nada por aqui... tente uma dessas opções:" textFill="#005099" AnchorPane.leftAnchor="258.0" AnchorPane.rightAnchor="202.0">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Circle fx:id="circulo_header" fill="WHITE" layoutX="751.0" layoutY="49.0" radius="33.0" stroke="WHITE" strokeType="INSIDE" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="12.0" />
-      <Label fx:id="texto2_header" layoutX="599.0" layoutY="35.0" prefHeight="39.0" prefWidth="50.0" text="Menu" textFill="WHITE" AnchorPane.rightAnchor="151.0">
+      <Circle fx:id="circulo_header" fill="WHITE" layoutX="756.0" layoutY="47.0" radius="27.0" stroke="WHITE" strokeType="INSIDE" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="20.0" />
+      <Label fx:id="texto2_header" layoutX="636.0" layoutY="27.0" prefHeight="39.0" prefWidth="50.0" text="Menu" textFill="WHITE" AnchorPane.rightAnchor="114.0">
          <font>
             <Font size="18.0" />
          </font>
@@ -56,7 +56,7 @@
       </Button>
       <StackPane layoutX="526.0" layoutY="196.0" prefHeight="150.0" prefWidth="200.0" AnchorPane.leftAnchor="526.0" AnchorPane.rightAnchor="495.0">
          <children>
-            <ImageView fx:id="mulher_prancheta" fitHeight="209.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="mulher_prancheta" fitHeight="227.0" fitWidth="209.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../images/icon3.png" />
                </image>
