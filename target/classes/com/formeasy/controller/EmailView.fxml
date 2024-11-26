@@ -13,7 +13,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.formeasy.controller.EnvioController">
    <children>
-      <AnchorPane layoutX="74.0" layoutY="125.0" prefHeight="423.0" prefWidth="658.0" style="-fx-border-color: #A9A9A9; -fx-border-radius: 20px;" AnchorPane.bottomAnchor="52.0" AnchorPane.leftAnchor="74.0" AnchorPane.rightAnchor="68.0" AnchorPane.topAnchor="125.0">
+      <AnchorPane layoutX="71.0" layoutY="128.0" prefHeight="423.0" prefWidth="658.0" style="-fx-border-color: #A9A9A9; -fx-border-radius: 20px;" AnchorPane.bottomAnchor="49.0" AnchorPane.leftAnchor="71.0" AnchorPane.rightAnchor="71.0" AnchorPane.topAnchor="128.0">
          <children>
             <TextField id="TextAssunto" fx:id="TextAssunto" layoutX="48.0" layoutY="50.0" prefHeight="36.0" prefWidth="308.0" promptText="Assunto:" style="-fx-font-size: 16px;" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="49.0">
                <font>
@@ -37,20 +37,20 @@
       </AnchorPane>
       <AnchorPane prefHeight="95.0" prefWidth="800.0" style="-fx-background-color: #005099;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Label layoutX="631.0" layoutY="37.0" text="Menu" textFill="WHITE" AnchorPane.rightAnchor="123.0">
+            <Label layoutX="631.0" layoutY="34.0" text="Menu" textFill="WHITE" AnchorPane.rightAnchor="123.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
             <Circle fill="WHITE" layoutX="759.0" layoutY="48.0" radius="27.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.rightAnchor="14.0" />
-            <ImageView fitHeight="61.0" fitWidth="203.0" layoutX="14.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="62.0" fitWidth="216.0" layoutX="14.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../images/logo-horizontal.png" />
                </image>
             </ImageView>
          </children>
       </AnchorPane>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="241.0" layoutY="36.0" text="Acessar Formulários" textFill="WHITE" AnchorPane.leftAnchor="241.0" AnchorPane.rightAnchor="235.0">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="241.0" layoutY="35.0" text="Acessar Formulários" textFill="WHITE" AnchorPane.leftAnchor="241.0" AnchorPane.rightAnchor="235.0">
          <font>
             <Font size="18.0" />
          </font>
