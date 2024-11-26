@@ -6,28 +6,33 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import net.rgielen.fxweaver.core.FxmlView;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
 import com.formeasy.service.EmailService;
 import com.formeasy.service.ExcelService;
 
+import jakarta.mail.MessagingException;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import javax.mail.MessagingException;
+@Component
+@FxmlView("EmailView.fxml")
 
 @Controller
 public class EnvioController {
-	
-	@Autowired
-	private ExcelService excelService;
-	
-	@Autowired
-	private EmailService emailService;
-    
+
+    @Autowired
+    private ExcelService excelService;
+
+    @Autowired
+    private EmailService emailService;
+
     @FXML
     private TextField TextAssunto;
 
@@ -40,15 +45,14 @@ public class EnvioController {
     @FXML
     private Button btnEnviar;
 
-    @FXML
     private File selectedFile;
     
-    public EnvioController() { // Adicionei o construtor, por que só com a injeção do serviço não tava funcionado(ERROR: NULL POINTER EXCEPTION)
+    public EnvioController(){
     	this.excelService = new ExcelService();
     	this.emailService = new EmailService();
     }
 
-	@FXML
+    @FXML
     public void initialize() {
         btnAdicionarArquivo.setOnAction(e -> adicionarArquivo());
         btnEnviar.setOnAction(e -> enviarArquivo());
@@ -71,30 +75,42 @@ public class EnvioController {
     public void enviarArquivo() {
         String assunto = TextAssunto.getText();
         String descricao = TextMensagem.getText();
-        
+
+        // Valida os campos obrigatórios
+        if (assunto == null || assunto.trim().isEmpty()) {
+            System.out.println("Assunto não pode estar vazio.");
+            return;
+        }
+
+        if (descricao == null || descricao.trim().isEmpty()) {
+            System.out.println("Mensagem não pode estar vazia.");
+            return;
+        }
+
         if (selectedFile != null) {
             try {
-                // Extrai os e-mails do arquivo Excel usando o ExcelService injetado
+                // Extrai os e-mails do arquivo Excel
                 List<String> emails = excelService.getEmailsFromExcel(selectedFile);
 
-                // Remove e-mails nulos ou inválidos da lista
+                // Remove e-mails nulos ou inválidos
                 emails.removeIf(email -> email == null || email.trim().isEmpty() || !emailService.isValidEmail(email));
 
-                // Envia e-mails apenas se a lista não estiver vazia
                 if (!emails.isEmpty()) {
-                    emailService.sendEmails(emails, assunto, descricao); // Envia e-mails utilizando o EmailService
+                    // Envia os e-mails utilizando o EmailService
+                    emailService.sendEmails(emails, assunto, descricao);
                     System.out.println(emails.size() + " e-mails enviados com sucesso!");
                 } else {
-                    System.out.println("Nenhum e-mail válido encontrado no arquivo."); 
+                    System.out.println("Nenhum e-mail válido encontrado no arquivo.");
                 }
             } catch (IOException e) {
+                System.out.println("Erro ao ler o arquivo: " + e.getMessage());
                 e.printStackTrace();
             } catch (MessagingException e) {
+                System.out.println("Erro ao enviar e-mails: " + e.getMessage());
                 e.printStackTrace();
             }
         } else {
             System.out.println("Nenhum arquivo selecionado.");
         }
     }
-
 }
