@@ -23,6 +23,7 @@ public class EmailService {
 	private final String username = "viniciusalves081105@gmail.com";
 	private final String password = "gorz rvwu nyzg tdog"; 
 	
+	
     // Método para validar se um e-mail tem um formato válido
     public boolean isValidEmail(String email) {
         if (email == null || email.trim().isEmpty()) {
@@ -64,6 +65,7 @@ public class EmailService {
     	                msg.setText(descricao);
     	                Transport.send(msg);
     	                System.out.println("E-mail enviado para: " + recipient);
+    	        	    
     	            } catch (MessagingException e) {
     	                System.out.println("Erro ao enviar e-mail para: " + recipient + " - " + e.getMessage());
     	            }
@@ -71,6 +73,7 @@ public class EmailService {
     	            System.out.println("E-mail inválido ou nulo: " + recipient);
     	        }
     	    }
+    	    
     	}
 
 

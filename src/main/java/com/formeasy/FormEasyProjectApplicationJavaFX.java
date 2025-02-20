@@ -3,8 +3,8 @@ package com.formeasy;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 
-import com.formeasy.controller.EnvioController;
 import com.formeasy.controller.LoginController;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Parent;
@@ -36,20 +36,9 @@ public class FormEasyProjectApplicationJavaFX extends Application {
         primaryStage.setScene(loginScene);
         primaryStage.setResizable(true);
         primaryStage.setTitle("Form Easy - Login");
+        primaryStage.setMaximized(true);
         primaryStage.getIcons().add(icon);
         primaryStage.show();
-        
-        FxWeaver Weaver = springContext.getBean(FxWeaver.class);
-        Parent emailRoot = Weaver.loadView(EnvioController.class);
-        
-        Stage emailStage = new Stage();
-        Scene emailScene = new Scene(emailRoot);
-        Image image = new Image(getClass().getResourceAsStream("/images/logo-quadrada2.png"));
-        emailStage.setScene(emailScene);
-        emailStage.setResizable(true);
-        emailStage.setTitle("Form Easy - Envio de E-mail");
-        emailStage.getIcons().add(image);
-
        
     }
 

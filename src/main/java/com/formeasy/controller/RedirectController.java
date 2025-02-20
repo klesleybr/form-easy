@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 
 public class RedirectController {	
 	public void loadNewStage(String title, String pathToView) throws IOException {
+		
 		Stage newStage = new Stage();
 	
 		Parent root = FXMLLoader.load(getClass().getResource(pathToView));
@@ -23,7 +24,9 @@ public class RedirectController {
     	newStage.getIcons().add(icon);
 		newStage.setTitle(title);
 		newStage.resizableProperty().setValue(Boolean.TRUE);
+		newStage.setMaximized(true);
 		newStage.setScene(newScene);
+		
 		newStage.show();
 	}
 	

@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.google.api.services.drive.model.File;
@@ -13,23 +15,40 @@ import com.google.api.services.forms.v1.model.Item;
 import com.google.api.services.forms.v1.model.Option;
 import com.google.api.services.sheets.v4.model.ValueRange;
 
+import javafx.application.Platform;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.util.StringConverter;
 
 public class ShowAnswersController {
+	
+	RedirectController redirect = new RedirectController();
+	
 	@Autowired
 	DashboardController dashboard = new DashboardController();
-
+	
+	@FXML
+	private Button btnMenu;
+	
+	@FXML
+	private Button btnAcessEnvio;
+	
+	@FXML
+	private Button btnSair;
+	
     @FXML
     private Button btnSearchAnswers;
 
@@ -50,6 +69,8 @@ public class ShowAnswersController {
 	 * A função abaixo está relacionada ao botão BUSCAR FORMULÁRIOS. Serve para listar
 	 * os formulários dentro de um ChoiceBox.
 	 */    
+    
+      
     
     @FXML
     void onClickBtnSearchForms(ActionEvent event) throws IOException, GeneralSecurityException {
@@ -130,8 +151,57 @@ public class ShowAnswersController {
 	 @FXML
 	    void initialize() {
 	        tblShowAnswers.setPlaceholder(new Label("A tabela está vazia. Indique o formulário desejado e busque pelas respostas."));
-
+	        btnMenu.setOnAction(e-> voltarMenu());
+	        btnAcessEnvio.setOnAction(e-> AcessoEnvio());
+	        btnSair.setOnAction(e-> Sair());
+	        
 	    }
+	 
+	 @FXML
+	    public void voltarMenu() {
+	    	 try {
+	    	    redirect.loadNewStage("", "WelcomeView.fxml");
+	    	    redirect.closeCurrentStage(btnMenu);
+	    	 } catch (IOException e) {
+	    		 System.out.println("Erro ao carregar a tela do menu: " + e.getMessage());
+	    		 e.printStackTrace();
+	    }
+	 }
+	 
+	 @FXML
+	 public void AcessoEnvio() {
+		 try {
+			 redirect.loadNewStage("", "EmailView.fxml");
+			 redirect.closeCurrentStage(btnAcessEnvio);
+		 }catch(IOException e) {
+			 System.out.println("Erro ao carregar a tela de envio de e-mails: " + e.getMessage());
+    		 e.printStackTrace();
+		 }
+		 
+	 }
+	 
+	 @FXML
+	 public void Sair() {
+		 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+    	 alert.setTitle("Confirmação de Saída");
+    	 alert.setHeaderText(null);
+    	 alert.setContentText("Tem certeza que deseja sair?");
+    	 
+    	 Image logo = new Image(getClass().getResourceAsStream("/images/logo-quadrada2.png"));
+    	 ImageView logoView = new ImageView(logo);
+    	 logoView.setFitWidth(20);
+    	 logoView.setFitHeight(20);
+
+    	 alert.setGraphic(logoView);
+
+    	 Optional<ButtonType> result = alert.showAndWait();
+
+    	 if (result.isPresent() && result.get() == ButtonType.OK) {
+    		 Platform.exit();
+    	 }else {
+    		 System.out.println("Saída cancelada");
+    	    }
+	 }
    
 	
     private void setValuesOnColumns(ObservableList<List<Object>> listValues) {

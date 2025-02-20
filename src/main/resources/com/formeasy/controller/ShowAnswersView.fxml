@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
@@ -15,42 +15,68 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.formeasy.controller.ShowAnswersController">
    <children>
-      <Pane layoutX="-5.0" layoutY="-4.0" prefHeight="95.0" prefWidth="805.0" style="-fx-background-color: #005099;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-      <ImageView fx:id="formeasy_foto" fitHeight="71.0" fitWidth="223.0" layoutX="10.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="567.0">
+      <Pane layoutX="-5.0" layoutY="-4.0" prefHeight="95.0" prefWidth="800.0" style="-fx-background-color: #005099;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <ImageView fx:id="formeasy_foto" fitHeight="71.0" fitWidth="223.0" layoutX="14.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../images/logo-horizontal.png" />
          </image>
       </ImageView>
       <TableView fx:id="tblShowAnswers" layoutX="62.0" layoutY="120.0" prefHeight="319.0" prefWidth="676.0" AnchorPane.bottomAnchor="161.0" AnchorPane.leftAnchor="62.0" AnchorPane.rightAnchor="62.0" AnchorPane.topAnchor="120.0" />
-      <Button fx:id="btnSearchForms" alignment="CENTER" contentDisplay="CENTER" layoutX="476.0" layoutY="468.0" mnemonicParsing="false" onAction="#onClickBtnSearchForms" prefHeight="36.0" prefWidth="223.0" text="Procurar Formulários" AnchorPane.bottomAnchor="96.0" AnchorPane.rightAnchor="127.0">
+      <Button fx:id="btnSearchForms" alignment="CENTER" contentDisplay="CENTER" layoutX="472.0" layoutY="468.0" mnemonicParsing="false" onAction="#onClickBtnSearchForms" prefHeight="36.0" prefWidth="223.0" style="-fx-background-color: #ddd; -fx-background-radius: 9px;" text="Procurar Formulários" AnchorPane.bottomAnchor="96.0" AnchorPane.rightAnchor="105.0">
          <font>
             <Font size="15.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
-      <ChoiceBox fx:id="cbxListForms" layoutX="95.0" layoutY="468.0" prefHeight="36.0" prefWidth="350.0" AnchorPane.bottomAnchor="96.0" AnchorPane.leftAnchor="95.0" AnchorPane.rightAnchor="368.0" />
-      <Button fx:id="btnSearchAnswers" contentDisplay="CENTER" layoutX="168.0" layoutY="516.0" mnemonicParsing="false" onAction="#onClickBtnSearchAnswers" prefHeight="36.0" prefWidth="191.0" text="Mostrar Respostas" AnchorPane.bottomAnchor="48.0" AnchorPane.leftAnchor="168.0" AnchorPane.rightAnchor="390.0">
+      <ChoiceBox fx:id="cbxListForms" layoutX="95.0" layoutY="468.0" prefHeight="36.0" prefWidth="350.0" style="-fx-background-color: #ddd; -fx-background-radius: 9px;" AnchorPane.bottomAnchor="96.0" AnchorPane.leftAnchor="95.0" AnchorPane.rightAnchor="368.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></ChoiceBox>
+      <Button fx:id="btnSearchAnswers" contentDisplay="CENTER" layoutX="143.0" layoutY="517.0" mnemonicParsing="false" onAction="#onClickBtnSearchAnswers" prefHeight="36.0" prefWidth="191.0" style="-fx-background-color: #ddd; -fx-background-radius: 9px;" text="Mostrar Respostas" AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="143.0" AnchorPane.rightAnchor="415.0">
          <font>
             <Font size="15.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
-      <CheckBox fx:id="chbxPercentage" alignment="CENTER" contentDisplay="CENTER" layoutX="477.0" layoutY="523.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="198.0" text="Exibir estatísticas" AnchorPane.bottomAnchor="56.0" AnchorPane.rightAnchor="160.0">
+      <CheckBox fx:id="chbxPercentage" alignment="CENTER" contentDisplay="CENTER" layoutX="472.0" layoutY="524.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="198.0" text="Exibir estatísticas" AnchorPane.bottomAnchor="55.0" AnchorPane.rightAnchor="130.0">
          <font>
             <Font size="15.0" />
          </font>
          <tooltip>
             <Tooltip text="Ativar esta opção faz com que as respostas sejam exibidas em formato percentual (válido apenas para questões de múltipla escolha e seleção única)." />
          </tooltip>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </CheckBox>
-      <Label fx:id="texto1_header" alignment="CENTER" contentDisplay="CENTER" layoutX="318.0" layoutY="27.0" prefHeight="39.0" prefWidth="177.0" text="Acessar Formulários " textFill="WHITE" AnchorPane.leftAnchor="318.0" AnchorPane.rightAnchor="305.0">
+      <Circle fx:id="circulo_header" fill="WHITE" layoutX="756.0" layoutY="47.0" radius="27.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.rightAnchor="14.0" />
+      <Button fx:id="btnMenu" layoutX="362.0" layoutY="28.0" mnemonicParsing="false" onAction="#initialize" prefHeight="39.0" style="-fx-background-color: 005099;" text="Menu" textFill="WHITE" AnchorPane.rightAnchor="368.0">
          <font>
             <Font size="18.0" />
          </font>
-      </Label>
-      <Label fx:id="texto2_header" layoutX="624.0" layoutY="27.0" prefHeight="39.0" prefWidth="50.0" text="Menu" textFill="WHITE" AnchorPane.rightAnchor="140.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="btnAcessEnvio" layoutX="433.0" layoutY="28.0" mnemonicParsing="false" prefHeight="39.0" style="-fx-background-color: #005099;" text="Acessar Envio de E-mails" textFill="WHITE" AnchorPane.rightAnchor="148.0">
          <font>
             <Font size="18.0" />
          </font>
-      </Label>
-      <Circle fx:id="circulo_header" fill="WHITE" layoutX="77.0" layoutY="44.0" radius="28.0" stroke="WHITE" strokeType="INSIDE" AnchorPane.rightAnchor="25.0" />
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="btnSair" layoutX="638.0" layoutY="28.0" mnemonicParsing="false" prefHeight="39.0" style="-fx-background-color: #005099;" text="Sair" textFill="WHITE" AnchorPane.rightAnchor="95.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>

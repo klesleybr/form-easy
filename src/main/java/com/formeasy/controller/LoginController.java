@@ -1,12 +1,12 @@
 package com.formeasy.controller;
 
-
 import java.io.IOException;
 
 import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.List;
 
+import org.controlsfx.control.Notifications;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -15,14 +15,17 @@ import com.google.api.services.sheets.v4.SheetsScopes;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import net.rgielen.fxweaver.core.FxmlView;
 
 @Component
@@ -109,14 +112,37 @@ public class LoginController{
         		stage.close();
         		
         		try {
+
 					redirect.loadNewStage("Menu", "WelcomeView.fxml");
 					redirect.closeCurrentStage(btnLogin);
 				} catch (IOException e) {					
 					e.printStackTrace();
 				}
     		} else {
-    			System.out.println("Nenhum código encontrado ainda...");
-    		}  
-    	});    	
-    } 
+    			showNotification("Erro", "Nenhum código encontrado ainda...", false);
+    		} 
+    		
+    	});
+    }
+    	public void showNotification(String titulo, String mensagem, boolean sucesso) {
+            
+        	String imagePath = sucesso ? "/images/sucess.png" : "/images/error.png";
+
+            // Carregar imagens
+            Image image = new Image(getClass().getResource(imagePath).toExternalForm());
+            
+            ImageView imageViewStatus = new ImageView(image);
+            imageViewStatus.setFitWidth(50);
+            imageViewStatus.setFitHeight(50);
+
+            // Criar e exibir a notificação
+            Notifications.create()
+                .title(titulo)
+                .text(mensagem)
+                .graphic(imageViewStatus) 
+                .position(Pos.BASELINE_RIGHT)  // Posição no canto inferior direito da tela
+                .hideAfter(Duration.seconds(5))  // Duração da notificação
+                .show();
+        }
+    
 }
