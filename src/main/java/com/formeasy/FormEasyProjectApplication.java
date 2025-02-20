@@ -12,9 +12,7 @@ import javafx.application.Application;
 public class FormEasyProjectApplication {
 
 	public static void main(String[] args) {
-		// Adiciona-se o Application a fim de passar o controle para o JavaFX
 		Application.launch(FormEasyProjectApplicationJavaFX.class, args);
-		
 	}
 
 }

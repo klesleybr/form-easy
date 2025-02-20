@@ -1,17 +1,24 @@
 package com.formeasy.controller;
 
-import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.stage.Stage;
+
+import org.controlsfx.control.Notifications;
+import javafx.geometry.Pos;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.util.Duration;
+
+import javafx.application.Platform;
+import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxmlView;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
-
 import com.formeasy.service.EmailService;
 import com.formeasy.service.ExcelService;
 
@@ -20,18 +27,28 @@ import jakarta.mail.MessagingException;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-
-@Component
-@FxmlView("EmailView.fxml")
+import java.util.Optional;
 
 @Controller
+@FxmlView("EmailView.fxml")
 public class EnvioController {
+	
+	RedirectController redirect = new RedirectController();
 
     @Autowired
     private ExcelService excelService;
 
     @Autowired
     private EmailService emailService;
+    
+    @FXML
+    private Button btnMenu;
+    
+    @FXML
+    private Button btnAcessResp;
+    
+    @FXML 
+    private Button btnSair;
 
     @FXML
     private TextField TextAssunto;
@@ -52,12 +69,64 @@ public class EnvioController {
     	this.emailService = new EmailService();
     }
 
+
     @FXML
     public void initialize() {
-        btnAdicionarArquivo.setOnAction(e -> adicionarArquivo());
-        btnEnviar.setOnAction(e -> enviarArquivo());
-    }
+    	btnMenu.setOnAction(e-> voltarMenu());
+    	btnAcessResp.setOnAction(e-> AcessoRespostas());
+    	btnSair.setOnAction(e-> Sair());
+        btnAdicionarArquivo.setOnAction(e-> adicionarArquivo());
+        btnEnviar.setOnAction(e-> enviarEmails());
 
+    }
+        	
+    @FXML
+    public void voltarMenu() {
+        try {
+        	redirect.loadNewStage("", "WelcomeView.fxml");
+        	redirect.closeCurrentStage(btnMenu);
+        } catch (IOException e) {
+        	showNotification("Erro", "Erro ao carregar a tela do menu: " + e.getMessage(), false);
+            e.printStackTrace();
+        }
+    }
+    	
+    @FXML
+    public void AcessoRespostas() {
+    	try {
+    		redirect.loadNewStage("", "ShowAnswersView.fxml");
+    		redirect.closeCurrentStage(btnAcessResp);
+    	}catch(IOException e) {
+    		showNotification("Erro", "Erro ao carregar a tela de análise das respostas" + e.getMessage(), false);
+    		e.printStackTrace();
+    	}
+   
+    }
+    	
+    @FXML
+    public void Sair() {
+    	 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+    	 alert.setTitle("Confirmação de Saída");
+    	 alert.setHeaderText(null);
+    	 alert.setContentText("Tem certeza que deseja sair?");
+    	 
+    	 Image logo = new Image(getClass().getResourceAsStream("/images/logo-quadrada2.png"));
+    	 ImageView logoView = new ImageView(logo);
+    	 logoView.setFitWidth(20);
+    	 logoView.setFitHeight(20);
+
+    	 alert.setGraphic(logoView);
+
+    	 Optional<ButtonType> result = alert.showAndWait();
+
+    	 if (result.isPresent() && result.get() == ButtonType.OK) {
+    		 Platform.exit();
+    	 }else {
+    		 System.out.println("Saída cancelada");
+    	    }
+    }
+    	
+    
     @FXML
     public void adicionarArquivo() {
         FileChooser fileChooser = new FileChooser();
@@ -65,52 +134,77 @@ public class EnvioController {
         selectedFile = fileChooser.showOpenDialog(stage);
 
         if (selectedFile != null) {
-            System.out.println("Arquivo selecionado: " + selectedFile.getName());
+        	showNotification("Sucesso", "Arquivo selecionado: " + selectedFile.getAbsolutePath(), true);
         } else {
-            System.out.println("Nenhum arquivo selecionado.");
+        	showNotification("Erro", "Nenhum arquivo selecionado.", false);
         }
+        
+        btnAdicionarArquivo.setOnMousePressed(event -> {
+            btnAdicionarArquivo.setStyle("-fx-background-color: #bbbbbb; -fx-translate-y: 2px;");
+        });
+
+        btnAdicionarArquivo.setOnMouseReleased(event -> {
+        	btnAdicionarArquivo.setStyle("-fx-background-color: #dddddd; -fx-translate-y: 0;");
+        });
     }
 
     @FXML
-    public void enviarArquivo() {
-        String assunto = TextAssunto.getText();
-        String descricao = TextMensagem.getText();
+    public void enviarEmails() {
+    	    String assunto = TextAssunto.getText().trim();
+    	    String descricao = TextMensagem.getText().trim();
 
-        // Valida os campos obrigatórios
-        if (assunto == null || assunto.trim().isEmpty()) {
-            System.out.println("Assunto não pode estar vazio.");
-            return;
-        }
+    	    if (assunto.isEmpty()) {
+    	    	showNotification("Erro", "O assunto não pode estar vazio.", false);
+    	        return;
+    	    }
 
-        if (descricao == null || descricao.trim().isEmpty()) {
-            System.out.println("Mensagem não pode estar vazia.");
-            return;
-        }
+    	    if (descricao.isEmpty()) {
+    	    	showNotification("Erro", "A mensagem não pode estar vazia.", false);
+    	        return;
+    	    }
 
-        if (selectedFile != null) {
-            try {
-                // Extrai os e-mails do arquivo Excel
-                List<String> emails = excelService.getEmailsFromExcel(selectedFile);
+    	    if (selectedFile != null) {
+    	        try {
+    	            List<String> emails = excelService.getEmailsFromExcel(selectedFile);
+    	            emails.removeIf(email -> email == null || email.trim().isEmpty() || !emailService.isValidEmail(email));
 
-                // Remove e-mails nulos ou inválidos
-                emails.removeIf(email -> email == null || email.trim().isEmpty() || !emailService.isValidEmail(email));
+    	            if (!emails.isEmpty()) {
+    	                emailService.sendEmails(emails, assunto, descricao);
+    	                showNotification("Sucesso", emails.size() + " e-mails enviados com sucesso!", true);
+    	            } else {
+    	            	showNotification("Aviso", "Nenhum e-mail válido encontrado no arquivo.", false);
+    	            }
+    	        } catch (IOException e) {
+    	        	showNotification("Erro", "Erro ao ler o arquivo: " + e.getMessage(), false);
+    	            e.printStackTrace();
+    	        } catch (MessagingException e) {
+    	        	showNotification("Erro", "Erro ao enviar e-mails: " + e.getMessage(), false);
+    	            e.printStackTrace();
+    	        }
+    	    } else {
+    	    	showNotification("Aviso", "Nenhum arquivo selecionado.", false);
+    	    }
+}
 
-                if (!emails.isEmpty()) {
-                    // Envia os e-mails utilizando o EmailService
-                    emailService.sendEmails(emails, assunto, descricao);
-                    System.out.println(emails.size() + " e-mails enviados com sucesso!");
-                } else {
-                    System.out.println("Nenhum e-mail válido encontrado no arquivo.");
-                }
-            } catch (IOException e) {
-                System.out.println("Erro ao ler o arquivo: " + e.getMessage());
-                e.printStackTrace();
-            } catch (MessagingException e) {
-                System.out.println("Erro ao enviar e-mails: " + e.getMessage());
-                e.printStackTrace();
-            }
-        } else {
-            System.out.println("Nenhum arquivo selecionado.");
-        }
+    public void showNotification(String titulo, String mensagem, boolean sucesso) {
+        
+    	String imagePath = sucesso ? "/images/sucess.png" : "/images/error.png";
+
+        // Carregar imagens
+        Image image = new Image(getClass().getResource(imagePath).toExternalForm());
+        
+        ImageView imageViewStatus = new ImageView(image);
+        imageViewStatus.setFitWidth(50);
+        imageViewStatus.setFitHeight(50);
+
+        // Criar e exibir a notificação
+        Notifications.create()
+            .title(titulo)
+            .text(mensagem)
+            .graphic(imageViewStatus) 
+            .position(Pos.BASELINE_RIGHT)  // Posição no canto inferior direito da tela
+            .hideAfter(Duration.seconds(5))  // Duração da notificação
+            .show();
     }
+
 }
