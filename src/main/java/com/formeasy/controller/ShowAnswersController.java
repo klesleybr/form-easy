@@ -171,7 +171,7 @@ public class ShowAnswersController {
 	 @FXML
 	 public void AcessoEnvio() {
 		 try {
-			 redirect.loadNewStage("", "EmailView.fxml");
+			 redirect.loadNewStage("Enviar Formulário", "EmailView.fxml");
 			 redirect.closeCurrentStage(btnAcessEnvio);
 		 }catch(IOException e) {
 			 System.out.println("Erro ao carregar a tela de envio de e-mails: " + e.getMessage());

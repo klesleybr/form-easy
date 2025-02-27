@@ -54,7 +54,7 @@
          </cursor>
       </CheckBox>
       <Circle fx:id="circulo_header" fill="WHITE" layoutX="756.0" layoutY="47.0" radius="27.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.rightAnchor="14.0" />
-      <Button fx:id="btnMenu" layoutX="362.0" layoutY="28.0" mnemonicParsing="false" onAction="#initialize" prefHeight="39.0" style="-fx-background-color: 005099;" text="Menu" textFill="WHITE" AnchorPane.rightAnchor="368.0">
+      <Button fx:id="btnMenu" layoutX="380.20000000000005" layoutY="29.0" mnemonicParsing="false" onAction="#initialize" prefHeight="39.0" style="-fx-background-color: #FF5C00;" text="Menu" textFill="WHITE" AnchorPane.rightAnchor="349.4">
          <font>
             <Font size="18.0" />
          </font>
@@ -62,7 +62,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="btnAcessEnvio" layoutX="433.0" layoutY="28.0" mnemonicParsing="false" prefHeight="39.0" style="-fx-background-color: #005099;" text="Acessar Envio de E-mails" textFill="WHITE" AnchorPane.rightAnchor="148.0">
+      <Button fx:id="btnAcessEnvio" layoutX="468.2" layoutY="29.0" mnemonicParsing="false" prefHeight="39.0" style="-fx-background-color: #FF5C00;" text="Enviar Formulário" textFill="WHITE" AnchorPane.rightAnchor="168.60000000000002">
          <font>
             <Font size="18.0" />
          </font>
@@ -70,7 +70,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="btnSair" layoutX="638.0" layoutY="28.0" mnemonicParsing="false" prefHeight="39.0" style="-fx-background-color: #005099;" text="Sair" textFill="WHITE" AnchorPane.rightAnchor="95.0">
+      <Button fx:id="btnSair" layoutX="638.0" layoutY="29.0" mnemonicParsing="false" prefHeight="39.0" style="-fx-background-color: #FF5C00;" text="Sair" textFill="WHITE" AnchorPane.rightAnchor="95.0">
          <font>
             <Font size="18.0" />
          </font>

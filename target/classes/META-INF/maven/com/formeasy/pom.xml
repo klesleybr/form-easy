@@ -2,12 +2,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.3.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+	
 	<groupId>com</groupId>
 	<artifactId>formeasy</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -134,10 +136,18 @@
 		<dependency>
     		<groupId>com.sun.mail</groupId>
     		<artifactId>jakarta.mail</artifactId>
-    		<version>2.0.1</version>
+    		<version>2.0.1</version>	<!-- Dependência relacionada com o envio de e-mails-->
 		</dependency>
 		
-		
+		<dependency>
+    		<groupId>org.controlsfx</groupId>
+    		<artifactId>controlsfx</artifactId>	
+    		<version>11.2.0</version>	<!-- Dependência relacionada a notificação -->
+		</dependency>
+
+
+
+				
 	</dependencies>
 
 	<build>

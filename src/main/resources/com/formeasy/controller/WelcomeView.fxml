@@ -53,7 +53,15 @@
             </ImageView>
          </children>
       </StackPane>
-      <Button fx:id="btnSair" layoutX="638.0" layoutY="29.0" mnemonicParsing="false" onAction="#Sair" prefHeight="39.0" style="-fx-background-color: #005099;" text="Sair" textFill="WHITE" AnchorPane.rightAnchor="95.0">
+      <Button fx:id="btnSair" layoutX="638.0" layoutY="29.0" mnemonicParsing="false" onAction="#Sair" prefHeight="39.0" style="-fx-background-color: #FF5C00;" text="Sair" textFill="WHITE" AnchorPane.rightAnchor="95.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="btnChangeAccount" layoutX="480.0" layoutY="29.0" mnemonicParsing="false" onAction="#onClickBtnChangeAccount" prefHeight="39.0" style="-fx-background-color: #FF5C00;" text="Mudar de Conta" textFill="WHITE" AnchorPane.rightAnchor="166.4">
          <font>
             <Font size="18.0" />
          </font>

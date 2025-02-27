@@ -1,5 +1,6 @@
 package com.formeasy.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
 
@@ -18,7 +19,10 @@ import javafx.scene.shape.Rectangle;
 
 public class WelcomeController {
 	RedirectController redirect = new RedirectController();
-
+	
+	@FXML
+	private Button btnChangeAccount;
+	
     @FXML
     private Button btnOptionAnalyze;
 
@@ -78,19 +82,39 @@ public class WelcomeController {
     
     @FXML
     void onClickBtnOptionAnalyze(ActionEvent event) throws IOException {
-    	redirect.loadNewStage("", "ShowAnswersView.fxml");
+    	redirect.loadNewStage("Analisar Respostas", "ShowAnswersView.fxml");
     	redirect.closeCurrentStage(btnOptionAnalyze);
     }
 
     @FXML
     void onClickBtnOptionSend(ActionEvent event) {
     	try {
-			redirect.loadNewStage("", "EmailView.fxml");
+			redirect.loadNewStage("Enviar Formulário", "EmailView.fxml");
 			redirect.closeCurrentStage(btnOptionSend);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
+    }
+    
+    @FXML
+    void onClickBtnChangeAccount(ActionEvent event) throws IOException {
+    	File tokensFolder = new File("tokens");
+    	
+    	if(tokensFolder.exists() && tokensFolder.isDirectory()) {
+    		for(File file : tokensFolder.listFiles()) {
+    			file.delete();
+    		}
+    		
+    		if(tokensFolder.delete()) {
+    			System.out.println("Logout realizado com sucesso!");
+    			redirect.loadNewStage("Realizar login", "LoginView.fxml");
+    			redirect.closeCurrentStage(btnChangeAccount);
+    		}
+    		else {
+    			System.out.println("Falha ao realizar logout.");
+    		}
+    	}
     }
 
 }

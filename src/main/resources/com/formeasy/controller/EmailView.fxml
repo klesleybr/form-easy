@@ -51,7 +51,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <Button fx:id="btnAcessResp" contentDisplay="CENTER" layoutX="397.0" layoutY="29.0" mnemonicParsing="false" prefHeight="39.0" style="-fx-background-color: #005099;" text="Acessar Análise de Respostas" textFill="WHITE" AnchorPane.rightAnchor="147.0">
+      <Button fx:id="btnAcessResp" contentDisplay="CENTER" layoutX="463.40000000000003" layoutY="29.0" mnemonicParsing="false" prefHeight="39.0" style="-fx-background-color: #FF5C00;" text="Analisar Respostas" textFill="WHITE" AnchorPane.rightAnchor="165.39999999999998">
          <font>
             <Font size="18.0" />
          </font>
@@ -59,7 +59,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="btnMenu" layoutX="325.0" layoutY="29.0" mnemonicParsing="false" onAction="#initialize" prefHeight="39.0" prefWidth="73.0" style="-fx-background-color: #005099;" text="Menu" textFill="WHITE" AnchorPane.rightAnchor="402.0">
+      <Button fx:id="btnMenu" layoutX="374.20000000000005" layoutY="29.0" mnemonicParsing="false" onAction="#initialize" prefHeight="39.0" prefWidth="73.0" style="-fx-background-color: #FF5C00;" text="Menu" textFill="WHITE" AnchorPane.rightAnchor="352.19999999999993">
          <font>
             <Font size="18.0" />
          </font>
@@ -67,7 +67,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="btnSair" layoutX="638.0" layoutY="29.0" mnemonicParsing="false" prefHeight="39.0" style="-fx-background-color: #005099;" text="Sair" textFill="WHITE" AnchorPane.rightAnchor="95.0">
+      <Button fx:id="btnSair" layoutX="638.0" layoutY="29.0" mnemonicParsing="false" prefHeight="39.0" style="-fx-background-color: #FF5C00;" text="Sair" textFill="WHITE" AnchorPane.rightAnchor="95.0">
          <font>
             <Font size="18.0" />
          </font>

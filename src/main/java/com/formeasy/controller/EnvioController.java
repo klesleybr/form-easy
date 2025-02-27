@@ -83,7 +83,7 @@ public class EnvioController {
     @FXML
     public void voltarMenu() {
         try {
-        	redirect.loadNewStage("", "WelcomeView.fxml");
+        	redirect.loadNewStage("Menu", "WelcomeView.fxml");
         	redirect.closeCurrentStage(btnMenu);
         } catch (IOException e) {
         	showNotification("Erro", "Erro ao carregar a tela do menu: " + e.getMessage(), false);
@@ -94,7 +94,7 @@ public class EnvioController {
     @FXML
     public void AcessoRespostas() {
     	try {
-    		redirect.loadNewStage("", "ShowAnswersView.fxml");
+    		redirect.loadNewStage("Analisar Respostas", "ShowAnswersView.fxml");
     		redirect.closeCurrentStage(btnAcessResp);
     	}catch(IOException e) {
     		showNotification("Erro", "Erro ao carregar a tela de análise das respostas" + e.getMessage(), false);
