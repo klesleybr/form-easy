@@ -246,11 +246,14 @@ public class ShowAnswersController {
     
     private void setPercentualsOnColumns(Form form, List<List<Object>> spreadsheet) {
     	//////////////////////////
-    	System.out.println(form);
+    	// System.out.println(form);
     	/////////////////////////////
     	
     	List<Item> items = form.getItems();    	
-    	List<List<Object>> majorListQuestionOptions = joinQuestionAndOptions(items);    	
+    	List<List<Object>> majorListQuestionOptions = joinQuestionAndOptions(items);   
+    	System.out.println("------------------------------------------------------------------------------------");
+    	System.out.println(majorListQuestionOptions);
+    	System.out.println("------------------------------------------------------------------------------------");
     	
     	int sizeMajorList = sizeMajorList(majorListQuestionOptions);
     	
@@ -307,22 +310,27 @@ public class ShowAnswersController {
     	 * a última da lista.
     	 */
     	
+    	// [[Tipo, Pergunta 1, Opção, Opção, ...]]
+    	
     	List<List<Object>> majorListQuestionOptions = new ArrayList<>();
     	
     	for(Item item : items) { 
     		if(item.getQuestionGroupItem() == null) {
     			ChoiceQuestion choiceQuestion = item.getQuestionItem().getQuestion().getChoiceQuestion();
         		
-        		if(choiceQuestion != null && (choiceQuestion.getType().equals("RADIO") || 
-        				choiceQuestion.getType().equals("DROP_DOWN"))) {
+        		if(choiceQuestion != null) {
         			// Essa é a lista menor que ficará dentro da lista maior (criada acima).
         			List<Object> questionOptions = new ArrayList<>();
         			
-        			// Adiciona o primeiro elemento, que sempre é a pergunta.
+        			// Adiciona o primeiro elemento, que é sempre o tipo de item (ex.: RADIO, CHECKBOX...)
+        			Object type = (Object) choiceQuestion.getType();
+        			questionOptions.add(type);
+        			
+        			// Adiciona o segundo elemento, que sempre é a pergunta.
         			Object question = (Object) item.getTitle();
         			questionOptions.add(question);
         			
-        			// Captura as respostas e, usando um loop, passa elas para a lista questionOptions, para unir à pergunta.
+        			// Captura as respostas e, usando um loop, passa elas para a lista questionOptions, para unir ao tipo e à pergunta.
             		List<Option> options = item.getQuestionItem().getQuestion().getChoiceQuestion().getOptions();           		
             		for(Option option : options) {
             			Object possibleAnswer = (Object) option.getValue();
@@ -347,7 +355,10 @@ public class ShowAnswersController {
     			sizeMajorList = list.size();    		
     	}
     	
-    	return sizeMajorList;
+    	// Subtrai-se 1, pois foi adicionado mais um elemento às listas: o TIPO DO ITEM. Este elemento
+    	// não possui uso prático, mas serve apenas para condicionar o tratamento dos dados conforme
+    	// o tipo do item.
+    	return sizeMajorList - 1; 
     }
     
     private List<List<Object>> convertAnswersInPercentageValues(List<List<Object>> listQuestionOptions, List<List<Object>> listAnswers){
@@ -356,9 +367,12 @@ public class ShowAnswersController {
     	for(List<Object> questionOptions : listQuestionOptions) {
     		List<Object> answersInPercent = new ArrayList<>();
     		
+    		Object type = questionOptions.get(0);
+    		questionOptions.remove(0);
+    		
     		Object question = questionOptions.get(0);
     		questionOptions.remove(0);    	    	    		
-    		answersInPercent.add(question);
+    		answersInPercent.add(question);    		
     		
     		List<Object> headerSpreadsheet = listAnswers.get(0);
     		int indexCurrentQuestion = headerSpreadsheet.indexOf(question); 
@@ -367,26 +381,50 @@ public class ShowAnswersController {
     		float amountTotalAnwers = listAnswers.size() - 1;    		
         	float amountNotOther = 0;
     		
-    		for(Object option : questionOptions) {
-    			amountAnswers = 0;
-    			    		    			
-    			if(option.equals((Object) "Outro")){    				
-    				amountAnswers = amountTotalAnwers - amountNotOther;    				
-				}
-    			else {
-    				for(List<Object> listaSheets : listAnswers) {
-    					System.out.println(listaSheets.get(indexCurrentQuestion) + " " + listaSheets.get(indexCurrentQuestion).getClass().getSimpleName() + "\n");
-        				if(listaSheets.get(indexCurrentQuestion).equals(option)) {
+        	if(!type.equals("CHECKBOX")) {
+        		for(Object option : questionOptions) {
+        			amountAnswers = 0;
+        			    		    			
+        			if(option.equals((Object) "Outro")){    				
+        				amountAnswers = amountTotalAnwers - amountNotOther;    				
+    				}
+        			else {
+        				for(List<Object> listaSheets : listAnswers) {    			
+            				if(listaSheets.get(indexCurrentQuestion).equals(option)) {
+            					amountAnswers ++;
+            					amountNotOther ++;
+            				}           				
+            			}       				
+        			}
+        			
+        			float valueInPercentage = amountAnswers / amountTotalAnwers * 100;
+        			String valuePercentageInString = String.format("%s: %.2f %%", (String) option, valueInPercentage);
+        			answersInPercent.add((Object) valuePercentageInString);     		
+        		}        		
+        	} else {
+        		for(Object option: questionOptions) {
+        			amountAnswers = 0;
+        			
+        			for(List<Object> listaSheets : listAnswers) {
+        				String answerInString = (String) listaSheets.get(indexCurrentQuestion);
+        				if(answerInString.contains((String) option)) {
+        					System.out.println(option + " " + answerInString + " OK!");
+        					
         					amountAnswers ++;
-        					amountNotOther ++;
-        				}           				
-        			}       				
-    			}
-    			
-    			float valueInPercentage = amountAnswers / amountTotalAnwers * 100;
-    			String valuePercentageInString = String.format("%.2f %%", valueInPercentage);
-    			answersInPercent.add((Object) valuePercentageInString);     		
-    		}
+        				} else {
+        					System.out.println(option + " " + answerInString + " NOT!");
+        				}
+        				
+        				System.out.println("-----------------------------------------------------------------------------------------");
+        			}
+        			
+        			float valueInPercentage = amountAnswers / amountTotalAnwers * 100;
+        			String valuePercentageInString = String.format("%s: %.2f %%", (String) option, valueInPercentage);
+        			answersInPercent.add((Object) valuePercentageInString);   
+        		}
+        		
+        	}
+    		
     		majorListAnswersInPercent.add(answersInPercent);
     	}
     	
