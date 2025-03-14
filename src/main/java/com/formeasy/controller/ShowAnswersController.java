@@ -79,6 +79,8 @@ public class ShowAnswersController {
     	 * Vai buscar no Google Drive todos os formulários que o usuário possui e 
     	 * retornar num ChoiceBox, na forma: [nome_formulario, id_formulario].
     	 */
+    	if(cbxListForms.getItems() != null)
+    		cbxListForms.getItems().clear();
     	
     	List<File> listFormsUser = dashboard.getFormsUser();
     	for(File form : listFormsUser) {
@@ -243,6 +245,10 @@ public class ShowAnswersController {
     }
     
     private void setPercentualsOnColumns(Form form, List<List<Object>> spreadsheet) {
+    	//////////////////////////
+    	System.out.println(form);
+    	/////////////////////////////
+    	
     	List<Item> items = form.getItems();    	
     	List<List<Object>> majorListQuestionOptions = joinQuestionAndOptions(items);    	
     	
@@ -303,27 +309,30 @@ public class ShowAnswersController {
     	
     	List<List<Object>> majorListQuestionOptions = new ArrayList<>();
     	
-    	for(Item item : items) {    		
-    		ChoiceQuestion choiceQuestion = item.getQuestionItem().getQuestion().getChoiceQuestion();    		    		
-    		if(choiceQuestion != null && choiceQuestion.getType().equals("RADIO")) {
-    			// Essa é a lista menor que ficará dentro da lista maior (criada acima).
-    			List<Object> questionOptions = new ArrayList<>();
-    			
-    			// Adiciona o primeiro elemento, que sempre é a pergunta.
-    			Object question = (Object) item.getTitle();
-    			questionOptions.add(question);
-    			
-    			// Captura as respostas e, usando um loop, passa elas para a lista questionOptions, para unir à pergunta.
-        		List<Option> options = item.getQuestionItem().getQuestion().getChoiceQuestion().getOptions();           		
-        		for(Option option : options) {
-        			Object possibleAnswer = (Object) option.getValue();
-        			// A opção "Outros" (para RADIO) sempre retorna null.        			
-        			if(possibleAnswer == null)
-        				possibleAnswer = (Object) "Outro";
-        			questionOptions.add(possibleAnswer);
-        		}
-        		majorListQuestionOptions.add(questionOptions);
-    		}    	     		    		
+    	for(Item item : items) { 
+    		if(item.getQuestionGroupItem() == null) {
+    			ChoiceQuestion choiceQuestion = item.getQuestionItem().getQuestion().getChoiceQuestion();
+        		
+        		if(choiceQuestion != null && (choiceQuestion.getType().equals("RADIO") || choiceQuestion.getType().equals("DROP_DOWN"))) {
+        			// Essa é a lista menor que ficará dentro da lista maior (criada acima).
+        			List<Object> questionOptions = new ArrayList<>();
+        			
+        			// Adiciona o primeiro elemento, que sempre é a pergunta.
+        			Object question = (Object) item.getTitle();
+        			questionOptions.add(question);
+        			
+        			// Captura as respostas e, usando um loop, passa elas para a lista questionOptions, para unir à pergunta.
+            		List<Option> options = item.getQuestionItem().getQuestion().getChoiceQuestion().getOptions();           		
+            		for(Option option : options) {
+            			Object possibleAnswer = (Object) option.getValue();
+            			// A opção "Outros" (para RADIO) sempre retorna null.        			
+            			if(possibleAnswer == null)
+            				possibleAnswer = (Object) "Outro";
+            			questionOptions.add(possibleAnswer);
+            		}
+            		majorListQuestionOptions.add(questionOptions);
+        		}      			
+    		}    		  	     		    	
     	}
     	
     	return majorListQuestionOptions;    	
@@ -365,6 +374,7 @@ public class ShowAnswersController {
 				}
     			else {
     				for(List<Object> listaSheets : listAnswers) {
+    					System.out.println(listaSheets.get(indexCurrentQuestion) + " " + listaSheets.get(indexCurrentQuestion).getClass().getSimpleName() + "\n");
         				if(listaSheets.get(indexCurrentQuestion).equals(option)) {
         					amountAnswers ++;
         					amountNotOther ++;
