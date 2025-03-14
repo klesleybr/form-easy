@@ -313,7 +313,8 @@ public class ShowAnswersController {
     		if(item.getQuestionGroupItem() == null) {
     			ChoiceQuestion choiceQuestion = item.getQuestionItem().getQuestion().getChoiceQuestion();
         		
-        		if(choiceQuestion != null && (choiceQuestion.getType().equals("RADIO") || choiceQuestion.getType().equals("DROP_DOWN"))) {
+        		if(choiceQuestion != null && (choiceQuestion.getType().equals("RADIO") || 
+        				choiceQuestion.getType().equals("DROP_DOWN"))) {
         			// Essa é a lista menor que ficará dentro da lista maior (criada acima).
         			List<Object> questionOptions = new ArrayList<>();
         			
@@ -331,7 +332,7 @@ public class ShowAnswersController {
             			questionOptions.add(possibleAnswer);
             		}
             		majorListQuestionOptions.add(questionOptions);
-        		}      			
+        		} 
     		}    		  	     		    	
     	}
     	
