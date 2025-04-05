@@ -26,6 +26,7 @@ import jakarta.mail.MessagingException;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.util.List;
 import java.util.Optional;
 
@@ -76,7 +77,14 @@ public class EnvioController {
     	btnAcessResp.setOnAction(e-> AcessoRespostas());
     	btnSair.setOnAction(e-> Sair());
         btnAdicionarArquivo.setOnAction(e-> adicionarArquivo());
-        btnEnviar.setOnAction(e-> enviarEmails());
+        btnEnviar.setOnAction(e-> {
+			try {
+				enviarEmails();
+			} catch (GeneralSecurityException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		});
 
     }
         	
@@ -149,7 +157,7 @@ public class EnvioController {
     }
 
     @FXML
-    public void enviarEmails() {
+    public void enviarEmails() throws GeneralSecurityException {
     	    String assunto = TextAssunto.getText().trim();
     	    String descricao = TextMensagem.getText().trim();
 

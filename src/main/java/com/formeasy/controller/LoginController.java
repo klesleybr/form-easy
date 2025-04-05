@@ -10,6 +10,8 @@ import org.controlsfx.control.Notifications;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import com.google.api.services.forms.v1.FormsScopes;
+import com.google.api.services.gmail.GmailScopes;
 import com.google.api.services.people.v1.PeopleServiceScopes;
 import com.google.api.services.sheets.v4.SheetsScopes;
 
@@ -71,9 +73,11 @@ public class LoginController{
     	final String CLIENT_ID = "714573222235-bavel8mv55lm80o9e18gbdo1rms32kfk.apps.googleusercontent.com";
     	final String REDIRECT_URI = "http://localhost:8888/Callback";
     	final List<String> SCOPES = Arrays.asList(SheetsScopes.SPREADSHEETS, SheetsScopes.DRIVE, 
-    			PeopleServiceScopes.USERINFO_EMAIL, PeopleServiceScopes.USERINFO_PROFILE);
+    			PeopleServiceScopes.USERINFO_EMAIL, PeopleServiceScopes.USERINFO_PROFILE, FormsScopes.FORMS_BODY, 
+    			GmailScopes.GMAIL_SEND, GmailScopes.GMAIL_READONLY, GmailScopes.GMAIL_MODIFY, 
+    			GmailScopes.MAIL_GOOGLE_COM);
     	
-    	WebView view = new WebView();
+    	WebView view = new WebView();    
     	WebEngine engine = view.getEngine();
     	BorderPane root = new BorderPane(view);
     	TextField redirecionamentoUrl = new TextField(url);
@@ -87,14 +91,22 @@ public class LoginController{
     	stage.setTitle("Fazer login com o Google");
     	stage.getIcons().add(icon);
     	stage.setScene(new Scene(root, 1000, 700));
-    	stage.resizableProperty().setValue(Boolean.FALSE);
+    	stage.resizableProperty().setValue(Boolean.TRUE);
     	stage.show();
     	
+    	
+    	// Se colocar "prompt=consent" após o "type=offline", força o usuário a aceitar os escopos da 
+    	// aplicação novamente (mesmo que ele já o tenha feito).
+    	// Se colocar "prompt=selec_account" após o "type=offline", ele força a escolher uma conta.
+    	
     	String urlAuthentication = "https://accounts.google.com/o/oauth2/auth?access_type=offline&"
-                + "client_id=" + CLIENT_ID
+                + "prompt=consent&" + "client_id=" + CLIENT_ID
                 + "&redirect_uri=" + REDIRECT_URI
-                + "&response_type=code&scope=" + SCOPES.get(0) + "%20" + SCOPES.get(1) + "%20" 
-                + SCOPES.get(2) + "%20" + SCOPES.get(3);
+                + "&response_type=code&scope=" + String.join("%20", SCOPES);
+                
+                /* + SCOPES.get(0) + "%20" + SCOPES.get(1) + "%20" 
+                + SCOPES.get(2) + "%20" + SCOPES.get(3) + "%20" + SCOPES.get(4) + "%20" + SCOPES.get(5)
+                + "%20" + SCOPES.get(6) + "%20" + SCOPES.get(7) + "%20" + SCOPES.get(8);*/
     	
     	engine.load(url);
     	engine.load(urlAuthentication);
@@ -107,12 +119,10 @@ public class LoginController{
     			if(authCode.contains("&")) {
     				authCode = authCode.split("&")[0];
     			}
-    			
-        		System.out.println("Código de autorização: " + authCode);        		
+    			        		       		
         		stage.close();
         		
         		try {
-
 					redirect.loadNewStage("Menu", "WelcomeView.fxml");
 					redirect.closeCurrentStage(btnLogin);
 				} catch (IOException e) {					

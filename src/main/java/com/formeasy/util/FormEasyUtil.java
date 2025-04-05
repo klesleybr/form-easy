@@ -30,6 +30,7 @@ import com.google.api.services.drive.model.FileList;
 import com.google.api.services.forms.v1.Forms;
 import com.google.api.services.forms.v1.FormsScopes;
 import com.google.api.services.forms.v1.model.Form;
+import com.google.api.services.gmail.GmailScopes;
 import com.google.api.services.people.v1.PeopleService;
 import com.google.api.services.people.v1.PeopleServiceScopes;
 import com.google.api.services.people.v1.model.Person;
@@ -47,7 +48,8 @@ public class FormEasyUtil {
 	// Nessa parte indicamos os escopos que selecionamos lá nas credenciais do Google Cloud.
 	private static final List<String> SCOPES = Arrays.asList(SheetsScopes.SPREADSHEETS, SheetsScopes.DRIVE, 
 			PeopleServiceScopes.USERINFO_EMAIL, PeopleServiceScopes.USERINFO_PROFILE,
-			FormsScopes.FORMS_BODY);
+			FormsScopes.FORMS_BODY, GmailScopes.GMAIL_SEND, GmailScopes.GMAIL_READONLY, GmailScopes.GMAIL_MODIFY, 
+			GmailScopes.MAIL_GOOGLE_COM);
 	
 	private static final String CREDENTIALS_FILE_PATH = "/credentials.json";
 	
@@ -84,6 +86,11 @@ public class FormEasyUtil {
 		
 		LocalServerReceiver receiver = new LocalServerReceiver.Builder().setPort(8888).build();
 		return new AuthorizationCodeInstalledApp(flow, receiver).authorize("user");
+	}
+	
+	public String getAccessToken() throws IOException, GeneralSecurityException {
+		Credential credential = getCredentials(GoogleNetHttpTransport.newTrustedTransport());		
+		return credential.getAccessToken();
 	}
 	
 	/*

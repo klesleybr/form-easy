@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.formeasy.service.FormEasyService;
-
+import com.google.api.client.auth.oauth2.Credential;
+import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
+import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.services.drive.model.File;
 import com.google.api.services.forms.v1.model.Form;
 import com.google.api.services.sheets.v4.model.BatchGetValuesResponse;
@@ -22,6 +24,16 @@ import com.google.api.services.sheets.v4.model.ValueRange;
 public class DashboardController {
 	@Autowired
 	FormEasyService formEasyService = new FormEasyService();
+	
+	public Credential getCredentials() throws IOException, GeneralSecurityException {
+		final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+		return formEasyService.getCredentials(HTTP_TRANSPORT);
+	}	
+	
+	@GetMapping("/google/api/token")
+	public String getAccessToken() throws IOException, GeneralSecurityException {
+		return formEasyService.getAccessToken();
+	}
 	
 	@GetMapping("/attributesuser")
 	public Map<String,String> getAttributesUser() throws IOException, GeneralSecurityException{

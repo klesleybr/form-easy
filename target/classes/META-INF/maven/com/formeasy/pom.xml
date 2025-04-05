@@ -144,10 +144,13 @@
     		<artifactId>controlsfx</artifactId>	
     		<version>11.2.0</version>	<!-- Dependência relacionada a notificação -->
 		</dependency>
-
-
-
-				
+		
+		<dependency>
+		    <groupId>com.google.apis</groupId>
+		    <artifactId>google-api-services-gmail</artifactId>
+		    <version>v1-rev20240520-2.0.0</version>
+		</dependency>
+					
 	</dependencies>
 
 	<build>

@@ -22,6 +22,7 @@ import net.rgielen.fxweaver.core.FxWeaver;
 public class FormEasyProjectApplicationJavaFX extends Application {
 
     private ConfigurableApplicationContext springContext;
+    private static FormEasyProjectApplicationJavaFX instance;
 
     @Override
     public void init() throws Exception {
@@ -55,6 +56,14 @@ public class FormEasyProjectApplicationJavaFX extends Application {
 				e.printStackTrace();
 			}
         });
+    }
+    
+    public FormEasyProjectApplicationJavaFX(){
+    	instance = this;
+    }
+    
+    public static FormEasyProjectApplicationJavaFX getInstance() {
+    	return instance;    	
     }
 
     // @Override
