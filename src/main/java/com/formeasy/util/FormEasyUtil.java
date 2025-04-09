@@ -219,4 +219,13 @@ public class FormEasyUtil {
 		return form;
 	}
 	
+	public String getAccessTokenFromAuthCode(String authCode) throws IOException {
+        return GoogleOAuthHelper.getAccessToken(authCode);
+    }
+
+    public Person getUserInfoFromAuthCode(String authCode) throws IOException, GeneralSecurityException {
+        String accessToken = getAccessTokenFromAuthCode(authCode);
+        return GooglePeopleHelper.getUserInfo(accessToken);
+    }
+	
 }

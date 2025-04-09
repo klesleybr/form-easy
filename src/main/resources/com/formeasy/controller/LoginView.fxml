@@ -25,12 +25,12 @@
             </DropShadow>
          </effect>
       </Pane>
-      <TextField layoutX="300.0" layoutY="230.0" prefHeight="52.0" prefWidth="212.0" promptText="Email" AnchorPane.bottomAnchor="318.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="288.0">
+      <TextField fx:id="txtLogin" layoutX="300.0" layoutY="230.0" prefHeight="52.0" prefWidth="212.0" promptText="Email" AnchorPane.bottomAnchor="318.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="288.0">
          <font>
             <Font size="18.0" />
          </font>
       </TextField>
-      <PasswordField layoutX="300.0" layoutY="290.0" prefHeight="52.0" prefWidth="212.0" promptText="Senha" AnchorPane.bottomAnchor="258.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="288.0">
+      <PasswordField fx:id="txtPassword" layoutX="300.0" layoutY="290.0" prefHeight="52.0" prefWidth="212.0" promptText="Senha" AnchorPane.bottomAnchor="258.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="288.0">
          <font>
             <Font size="18.0" />
          </font>
@@ -51,10 +51,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="266.0" layoutY="348.0" prefHeight="26.0" prefWidth="285.0" text="Não tem uma conta? Cadastre-se com o Google." textAlignment="CENTER" textFill="#005099" AnchorPane.bottomAnchor="226.0" AnchorPane.leftAnchor="266.0" AnchorPane.rightAnchor="249.0">
-         <font>
-            <Font size="13.0" />
-         </font></Label>
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="210.0" layoutY="133.0" prefHeight="54.0" prefWidth="380.0" text="Transformando suas ideias em formulários com facilidade" textFill="#869bae" AnchorPane.bottomAnchor="413.0" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="210.0">
          <font>
             <Font size="14.0" />
@@ -94,5 +90,13 @@
             </ImageView>
          </children>
       </StackPane>
+      <Button fx:id="btnCriar" alignment="CENTER" layoutX="272.0" layoutY="345.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="274.0" style="-fx-background-color: #fff;" text="Não tem uma conta? Crie sua conta aqui." textFill="#005099" AnchorPane.bottomAnchor="225.0" AnchorPane.leftAnchor="272.0" AnchorPane.rightAnchor="254.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

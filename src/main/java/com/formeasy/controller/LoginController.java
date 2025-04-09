@@ -7,9 +7,18 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.controlsfx.control.Notifications;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import com.formeasy.domain.LoginRequestDTO;
+import com.formeasy.domain.ResponseDTO;
+import com.formeasy.security.AuthSession;
 import com.google.api.services.forms.v1.FormsScopes;
 import com.google.api.services.gmail.GmailScopes;
 import com.google.api.services.people.v1.PeopleServiceScopes;
@@ -20,6 +29,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -30,10 +40,9 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import net.rgielen.fxweaver.core.FxmlView;
 
+
 @Component
 @FxmlView("LoginView.fxml")
-
-// Nova notação Service
 @Service
 public class LoginController{
 	RedirectController redirect = new RedirectController();
@@ -43,18 +52,56 @@ public class LoginController{
 	 
     @FXML
     private Button btnLoginGoogle;   
+    
+    @FXML
+    private TextField txtLogin;
+    
+    @FXML
+    private PasswordField txtPassword;
+    
+    @FXML
+    private Button btnCriar;
     	
     
     @FXML
     void onClickLogin(ActionEvent event) throws IOException {
     	
-    	// O path funcionou somente com "WelcomeView.fxml"
-    	// Este método ficará assim apenas para fins de teste.
+    	String login = txtLogin.getText().trim();
+    	String password = txtPassword.getText().trim();
     	
-    	String title = "Menu";
-    	String path = "WelcomeView.fxml";
-    	redirect.loadNewStage(title, path);
-    	redirect.closeCurrentStage(btnLogin);
+    	 if (login.isEmpty() || password.isEmpty()) {
+             showNotification("Erro", "Por favor, preencha todos os campos.", false);
+             return;
+         }
+    	 
+    	// Dados para autenticação
+         LoginRequestDTO requestDTO = new LoginRequestDTO(login, password);
+    	 
+    	 try {
+    		// Faz a requisição HTTP para o AuthController
+             ResponseEntity<ResponseDTO> response = fazerRequisicaoLogin(requestDTO);
+
+             if (response.getStatusCode() == HttpStatus.OK) {
+                 // Login bem-sucedido
+                 String token = response.getBody().token();
+                 
+                 // Inicia a sessão, buscando as credenciais que o usuário já registrou (entrada rápida)
+                 AuthSession.setToken(token);
+                 AuthSession.setUserLogin(txtLogin.getText());
+                 AuthSession.setUserPassword(txtPassword.getText());                 
+
+                 // Redireciona para a próxima tela
+                 redirect.loadNewStage("Menu", "WelcomeView.fxml");
+                 redirect.closeCurrentStage(btnLogin);
+             } else {
+                 // Exibe mensagem de erro
+                 showNotification("Erro", "Login ou senha incorretos.", false);
+             }
+         } catch (Exception e) {
+             showNotification("Erro", "Ocorreu um erro ao tentar fazer login.", false);
+             e.printStackTrace();
+         }
+
     }
     
     @FXML
@@ -65,8 +112,17 @@ public class LoginController{
     
     @FXML
     public void initialize() {
-    	
-	   
+    	btnCriar.setOnAction(e -> CriarConta());
+    }
+    
+    public void CriarConta() {
+    	try {
+    		 redirect.loadNewStage("Criar Conta", "RegistroView.fxml");
+             redirect.closeCurrentStage(btnCriar); 
+    	}catch(IOException e) {
+    		System.out.println("Ocorreu um erro ao tentar acessar a tela de registro.");
+            e.printStackTrace();
+    	}
     }
     
     private void openSuperimposedLoginView(String url) {
@@ -122,18 +178,44 @@ public class LoginController{
     			        		       		
         		stage.close();
         		
-        		try {
-					redirect.loadNewStage("Menu", "WelcomeView.fxml");
-					redirect.closeCurrentStage(btnLogin);
-				} catch (IOException e) {					
-					e.printStackTrace();
-				}
-    		} else {
-    			showNotification("Erro", "Nenhum código encontrado ainda...", false);
-    		} 
+        		try {                            
+                        // Redireciona para a próxima tela
+                        redirect.loadNewStage("Menu", "WelcomeView.fxml");
+                        redirect.closeCurrentStage(btnLogin);
+                        
+        		} catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                System.out.println("Nenhum código encontrado ainda...");
+            }
     		
     	});
     }
+    
+    //Envia requisições HTTP para o backend para autenticação
+    private ResponseEntity<ResponseDTO> fazerRequisicaoLogin(LoginRequestDTO requestDTO) {
+        // Configuração do cliente HTTP
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        // Corpo da requisição
+        HttpEntity<LoginRequestDTO> request = new HttpEntity<>(requestDTO, headers);
+        
+        ResponseEntity<ResponseDTO> response = restTemplate.postForEntity("http://localhost:8080/auth/login", request, ResponseDTO.class);
+        
+        if (response.getStatusCode() == HttpStatus.OK) {
+            ResponseDTO loginData = response.getBody();
+            System.out.println("Token: " + loginData.token());
+            System.out.println("Login: " + loginData.login());
+            System.out.println("Senha: " +loginData.password());
+            
+        }
+
+        return response;
+    }
+
     	public void showNotification(String titulo, String mensagem, boolean sucesso) {
             
         	String imagePath = sucesso ? "/images/sucess.png" : "/images/error.png";
@@ -154,5 +236,6 @@ public class LoginController{
                 .hideAfter(Duration.seconds(5))  // Duração da notificação
                 .show();
         }
-    
-}
+
+    }    
+

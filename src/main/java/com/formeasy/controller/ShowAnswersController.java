@@ -199,7 +199,7 @@ public class ShowAnswersController {
     	 Optional<ButtonType> result = alert.showAndWait();
 
     	 if (result.isPresent() && result.get() == ButtonType.OK) {
-    		 Platform.exit();
+    		 System.exit(0);
     	 }else {
     		 System.out.println("Saída cancelada");
     	    }

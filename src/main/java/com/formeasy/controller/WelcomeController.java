@@ -85,9 +85,9 @@ public class WelcomeController {
    	 	Optional<ButtonType> result = alert.showAndWait();
 
    	 	if (result.isPresent() && result.get() == ButtonType.OK) {
-   		 Platform.exit();
+   	 		System.exit(0);
    	 	}else {
-   		 System.out.println("Saída cancelada");
+   	 		System.out.println("Saída cancelada");
    	    }
     }
     
