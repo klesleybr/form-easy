@@ -9,7 +9,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
@@ -45,10 +44,14 @@
       </AnchorPane>
       <AnchorPane prefHeight="95.0" prefWidth="800.0" style="-fx-background-color: #005099;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Circle fx:id="perfil" fill="WHITE" layoutX="756.0" layoutY="47.0" radius="27.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.rightAnchor="14.0" />
             <ImageView fitHeight="71.0" fitWidth="223.0" layoutX="14.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../images/logo-horizontal.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="59.0" fitWidth="117.0" layoutX="695.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.21600341796875">
+               <image>
+                  <Image url="@../../../images/icon-usuario.png" />
                </image>
             </ImageView>
          </children>
@@ -77,7 +80,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <AnchorPane layoutX="570.0" layoutY="110.0" prefHeight="409.0" prefWidth="223.0" style="-fx-background-color: #005099;" AnchorPane.rightAnchor="7.0">
+      <AnchorPane layoutX="572.0" layoutY="110.0" prefHeight="409.0" prefWidth="223.0" style="-fx-background-color: #005099;" AnchorPane.rightAnchor="5.0">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="39.0" layoutY="89.0" prefHeight="35.0" prefWidth="146.0" text="Thiago Ferreira" textFill="WHITE">
                <font>
@@ -113,6 +116,47 @@
                </font>
             </Label>
             <Rectangle arcHeight="1.0" arcWidth="1.0" fill="#0084ff" height="3.0" layoutY="300.0" smooth="false" stroke="#ffffff00" strokeType="INSIDE" width="223.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="342.0" layoutY="110.0" prefHeight="409.0" prefWidth="223.0" style="-fx-background-color: #005099;" AnchorPane.rightAnchor="235.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="39.0" layoutY="89.0" prefHeight="35.0" prefWidth="146.0" text="Thiago Ferreira" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="108.0" prefHeight="35.0" prefWidth="183.0" text="231.14.058@uniriosead.com" textFill="WHITE" />
+            <ImageView fitHeight="59.0" fitWidth="117.0" layoutX="59.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/icon-usuario.png" />
+               </image>
+            </ImageView>
+            <Rectangle arcHeight="1.0" arcWidth="1.0" fill="#0084ff" height="3.0" layoutY="157.0" smooth="false" stroke="#ffffff00" strokeType="INSIDE" width="223.0" />
+            <Label layoutX="61.0" layoutY="164.0" text="Nome de usuario" textFill="WHITE" />
+            <Rectangle arcHeight="1.0" arcWidth="1.0" fill="#0084ff" height="3.0" layoutY="222.0" smooth="false" stroke="#ffffff00" strokeType="INSIDE" width="223.0" />
+            <Label layoutX="94.0" layoutY="232.0" text="Email" textFill="WHITE" />
+            <Rectangle arcHeight="1.0" arcWidth="1.0" fill="#0084ff" height="3.0" layoutY="300.0" smooth="false" stroke="#ffffff00" strokeType="INSIDE" width="223.0" />
+            <Label layoutX="71.0" layoutY="204.0" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#0f7dd7" height="17.0" layoutX="17.0" layoutY="188.0" smooth="false" stroke="#ffffff00" strokeType="INSIDE" style="-fx-background-radius: 20px;" width="183.0" />
+            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#0f7dd7" height="17.0" layoutX="17.0" layoutY="259.0" smooth="false" stroke="#ffffff00" strokeType="INSIDE" style="-fx-background-radius: 20px;" width="183.0" />
+            <Label layoutX="34.0" layoutY="311.0" text="Senha atual" textFill="WHITE" />
+            <Label layoutX="133.0" layoutY="311.0" text="Nova senha" textFill="WHITE" />
+            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#0f7dd7" height="17.0" layoutX="25.0" layoutY="331.0" smooth="false" stroke="#ffffff00" strokeType="INSIDE" style="-fx-background-radius: 20px;" width="83.0" />
+            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#0f7dd7" height="17.0" layoutX="123.0" layoutY="331.0" smooth="false" stroke="#ffffff00" strokeType="INSIDE" style="-fx-background-radius: 20px;" width="83.0" />
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="59.0" layoutY="367.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" style="-fx-background-color: #0f7dd7; -fx-background-radius: 9px;" text="Pronto" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="64.0" layoutY="368.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="137.78787803649902">
+               <image>
+                  <Image url="@../../../images/verificado.icon.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>
