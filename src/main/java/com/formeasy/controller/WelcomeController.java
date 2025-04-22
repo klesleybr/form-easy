@@ -40,6 +40,12 @@ public class WelcomeController {
     @FXML
     private Button btnOptionSend;
     
+    @FXML 
+    private Button btnsair;
+    
+    @FXML
+    private Button btnmudardeconta;
+    
     @FXML
     private Button btnSair;
 
@@ -67,6 +73,19 @@ public class WelcomeController {
     @FXML
     public void inicialize() {
     	btnSair.setOnAction(e-> Sair());
+    	btnmudardeconta.setOnAction(e -> mudardeconta ());
+    	btnsair.setOnAction(e -> sairperfil ());
+    }
+    
+    @FXML
+    public void sairperfil () {
+    	
+    }
+    
+    
+    @FXML
+    public void mudardeconta () {
+    	
     }
     
     public void Sair() {

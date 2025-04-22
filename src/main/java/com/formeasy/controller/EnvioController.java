@@ -46,6 +46,12 @@ public class EnvioController {
     private Button btnMenu;
     
     @FXML
+    private Button btnmudardeconta;
+    
+    @FXML
+    private Button btnsair;
+    
+    @FXML
     private Button btnAcessResp;
     
     @FXML 
@@ -77,6 +83,8 @@ public class EnvioController {
     	btnAcessResp.setOnAction(e-> AcessoRespostas());
     	btnSair.setOnAction(e-> Sair());
         btnAdicionarArquivo.setOnAction(e-> adicionarArquivo());
+        btnmudardeconta.setOnAction(e-> mudardeconta());
+        btnsair.setOnAction(e -> sairperfil());
         btnEnviar.setOnAction(e-> {
 			try {
 				enviarEmails();
@@ -87,7 +95,17 @@ public class EnvioController {
 		});
 
     }
-        	
+    @FXML
+    
+    public void mudardeconta() {
+    	
+    }
+    
+    @FXML
+    public void sairperfil() {
+    	
+    }
+    
     @FXML
     public void voltarMenu() {
         try {

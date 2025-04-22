@@ -85,34 +85,28 @@
                </font>
             </Label>
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="108.0" prefHeight="35.0" prefWidth="183.0" text="231.14.058@uniriosead.com" textFill="WHITE" />
-            <ImageView fitHeight="54.0" fitWidth="83.0" layoutX="71.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="54.0" fitWidth="83.0" layoutX="71.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../images/simbolo-do-menu-de-tres-linhas-arredondadas-contornadas.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="59.0" fitWidth="117.0" layoutX="59.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../images/icon-usuario.png" />
-               </image>
-            </ImageView>
             <Rectangle arcHeight="1.0" arcWidth="1.0" fill="#0084ff" height="3.0" layoutY="157.0" smooth="false" stroke="#ffffff00" strokeType="INSIDE" width="223.0" />
-            <Label layoutX="61.0" layoutY="194.0" text="Alternar dados" textFill="WHITE">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Rectangle arcHeight="1.0" arcWidth="1.0" fill="#0084ff" height="3.0" layoutY="222.0" smooth="false" stroke="#ffffff00" strokeType="INSIDE" width="223.0" />
-            <ImageView fitHeight="54.0" fitWidth="84.0" layoutX="72.0" layoutY="229.0" pickOnBounds="true" preserveRatio="true">
+            <Rectangle arcHeight="1.0" arcWidth="1.0" fill="#0084ff" height="3.0" layoutY="242.0" smooth="false" stroke="#ffffff00" strokeType="INSIDE" width="223.0" />
+            <ImageView fitHeight="54.0" fitWidth="84.0" layoutX="72.0" layoutY="249.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../images/sair.png" />
                </image>
             </ImageView>
-            <Label layoutX="100.0" layoutY="269.0" text="Sair" textFill="WHITE">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Rectangle arcHeight="1.0" arcWidth="1.0" fill="#0084ff" height="3.0" layoutY="300.0" smooth="false" stroke="#ffffff00" strokeType="INSIDE" width="223.0" />
+            <Rectangle arcHeight="1.0" arcWidth="1.0" fill="#0084ff" height="3.0" layoutY="330.0" smooth="false" stroke="#ffffff00" strokeType="INSIDE" width="223.0" />
+            <Circle fx:id="perfil11" fill="WHITE" layoutX="114.0" layoutY="62.0" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
+            <Button fx:id="btnmudardeconta" layoutX="64.0" layoutY="207.0" mnemonicParsing="false" style="-fx-background-color: #0084ff;" text="Mudar de conta" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button fx:id="btnsair" layoutX="67.0" layoutY="296.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="94.0" style="-fx-background-color: #0084ff;" text="Sair" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
          </children>
       </AnchorPane>
    </children>

@@ -47,6 +47,12 @@ public class ShowAnswersController {
 	private Button btnAcessEnvio;
 	
 	@FXML
+	private Button btnmudardeconta;
+	
+	@FXML
+	private Button btnsair;
+	
+	@FXML
 	private Button btnSair;
 	
     @FXML
@@ -156,8 +162,28 @@ public class ShowAnswersController {
 	        btnMenu.setOnAction(e-> voltarMenu());
 	        btnAcessEnvio.setOnAction(e-> AcessoEnvio());
 	        btnSair.setOnAction(e-> Sair());
+	        btnmudardeconta.setOnAction(e -> mudardeconta ());
+	        btnsair.setOnAction(e -> sairperfil ());
 	        
 	    }
+	 
+	 
+	 @FXML
+	 public void sairperfil () {
+		 
+		 
+	 }
+	 
+	 
+	 
+	 @FXML 
+	 public void mudardeconta () {
+		 
+		 
+		 
+	 }
+	 
+	 
 	 
 	 @FXML
 	    public void voltarMenu() {
