@@ -3,9 +3,8 @@ package com.formeasy.controller;
 import java.io.IOException;
 import java.util.Optional;
 
-import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.stereotype.Component;
 
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -18,7 +17,7 @@ import javafx.stage.Stage;
 
 
 // Classe incompleta
-
+@Component
 public class RedirectController {	
 	public void loadNewStage(String title, String pathToView) throws IOException {		
 		Stage newStage = new Stage();

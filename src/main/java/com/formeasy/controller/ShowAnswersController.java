@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.controlsfx.control.Notifications;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.google.api.services.drive.model.File;
@@ -15,12 +16,12 @@ import com.google.api.services.forms.v1.model.Item;
 import com.google.api.services.forms.v1.model.Option;
 import com.google.api.services.sheets.v4.model.ValueRange;
 
-import javafx.application.Platform;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -31,6 +32,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.util.Duration;
 import javafx.util.StringConverter;
 
 public class ShowAnswersController {
@@ -83,6 +85,13 @@ public class ShowAnswersController {
     		cbxListForms.getItems().clear();
     	
     	List<File> listFormsUser = dashboard.getFormsUser();
+    	
+    	if (listFormsUser.isEmpty()) {
+            showNotification("Aviso", "Nenhum formulário encontrado.", false);
+        } else {
+            showNotification("Sucesso", "Formulários carregados com sucesso!", true);
+        }
+    	
     	for(File form : listFormsUser) {
     		cbxListForms.getItems().add(form);
     		
@@ -134,9 +143,11 @@ public class ShowAnswersController {
         		 */
         		
             	ObservableList<List<Object>> obsListAnswers = FXCollections.observableArrayList(spreadsheetAnswers.getValues());
-            	setValuesOnColumns(obsListAnswers);        		
+            	setValuesOnColumns(obsListAnswers);  
+            	showNotification("Concluído", "Respostas carregadas com sucesso!", true);
         	} else {
         		setPercentualsOnColumns(form, spreadsheetAnswers.getValues());
+        		showNotification("Concluído", "Respostas em percentual carregadas!", true);
         	}
         	
     	}
@@ -147,6 +158,7 @@ public class ShowAnswersController {
         		tblShowAnswers.getColumns().clear();
     		
     		tblShowAnswers.setPlaceholder(new Label("O formulário selecionado não possui nenhuma planilha de respostas associada."));
+    		showNotification("Aviso", "Formulário sem planilha de respostas vinculada.", false);
     	}    
     }
 	
@@ -165,7 +177,7 @@ public class ShowAnswersController {
 	    	    redirect.loadNewStage("", "WelcomeView.fxml");
 	    	    redirect.closeCurrentStage(btnMenu);
 	    	 } catch (IOException e) {
-	    		 System.out.println("Erro ao carregar a tela do menu: " + e.getMessage());
+	    		 showNotification("Erro", "Erro ao carregar a tela do menu: ", false);
 	    		 e.printStackTrace();
 	    }
 	 }
@@ -176,7 +188,7 @@ public class ShowAnswersController {
 			 redirect.loadNewStage("Enviar Formulário", "EmailView.fxml");
 			 redirect.closeCurrentStage(btnAcessEnvio);
 		 }catch(IOException e) {
-			 System.out.println("Erro ao carregar a tela de envio de e-mails: " + e.getMessage());
+			 showNotification("Erro", "Erro ao carregar a tela de envio de e-mails: ", false);
     		 e.printStackTrace();
 		 }
 		 
@@ -199,7 +211,7 @@ public class ShowAnswersController {
     	 Optional<ButtonType> result = alert.showAndWait();
 
     	 if (result.isPresent() && result.get() == ButtonType.OK) {
-    		 Platform.exit();
+    		 System.exit(0);
     	 }else {
     		 System.out.println("Saída cancelada");
     	    }
@@ -430,4 +442,32 @@ public class ShowAnswersController {
     	
     	return majorListAnswersInPercent;
     }
+    
+    public void showNotification(String titulo, String mensagem, boolean sucesso) {
+        
+        String imagePath = sucesso ? "/images/sucess.png" : "/images/error.png";
+
+        // Carregar imagens
+        Image image = new Image(getClass().getResource(imagePath).toExternalForm());
+        
+        ImageView imageViewStatus = new ImageView(image);
+        if (sucesso) {
+            imageViewStatus.setFitWidth(50);  // Tamanho para imagem de sucesso
+            imageViewStatus.setFitHeight(50);
+        } else {
+            imageViewStatus.setFitWidth(80);  // Tamanho para imagem de erro
+            imageViewStatus.setFitHeight(80);
+        }
+        imageViewStatus.setPreserveRatio(true); 
+
+        // Criar e exibir a notificação
+        Notifications.create()
+              .title(titulo)
+              .text(mensagem)
+              .graphic(imageViewStatus) 
+              .position(Pos.BASELINE_RIGHT)  // Posição no canto inferior direito da tela
+              .hideAfter(Duration.seconds(5))  // Duração da notificação
+              .show();
+         }
+
 }

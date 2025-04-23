@@ -17,6 +17,8 @@ import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInsta
 import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
+import com.google.api.client.googleapis.auth.oauth2.GoogleTokenResponse;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.googleapis.json.GoogleJsonError;
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
@@ -98,7 +100,7 @@ public class FormEasyUtil {
 	 * e outra a ação. As estruturas serão semelhantes.
 	 */
 	
-	private PeopleService getPeopleService() throws GeneralSecurityException, IOException {
+	public PeopleService getPeopleService() throws GeneralSecurityException, IOException {
 		final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();		
 		PeopleService peopleService = new PeopleService.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
 				.setApplicationName(APPLICATION_NAME).build();
@@ -218,5 +220,35 @@ public class FormEasyUtil {
 		Form form = getFormsService().forms().get(formId).execute();
 		return form;
 	}
-	
+
+	public Credential createCredentialFromAuthCode(String authorizationCode) throws Exception {
+	    InputStream in = FormEasyUtil.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
+	    if (in == null) {
+	        throw new FileNotFoundException("Resource not found: " + CREDENTIALS_FILE_PATH);
+	    }
+
+	    GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
+	    NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+
+	    GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(
+	            HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, SCOPES)
+	            .setDataStoreFactory(new FileDataStoreFactory(new java.io.File(TOKENS_DIRECTORY_PATH)))
+	            .setAccessType("offline")
+	            .build();
+	            
+	    LocalServerReceiver receiver = new LocalServerReceiver.Builder().setPort(8888).build();
+	    String redirectUri = receiver.getRedirectUri();
+	    
+	   
+	    GoogleTokenResponse tokenResponse = flow.newTokenRequest(authorizationCode)
+	            .setRedirectUri(redirectUri)
+	            .execute();
+	   
+	    GoogleIdToken idToken = tokenResponse.parseIdToken();
+	    String login = idToken.getPayload().getEmail();
+
+	    Credential credential = flow.createAndStoreCredential(tokenResponse, login);
+	            
+	    return credential;
+	}
 }

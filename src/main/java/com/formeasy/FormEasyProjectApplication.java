@@ -10,7 +10,7 @@ import javafx.application.Application;
 @ComponentScan("com.formeasy")
 @SpringBootApplication
 public class FormEasyProjectApplication {
-
+	
 	public static void main(String[] args) {
 		Application.launch(FormEasyProjectApplicationJavaFX.class, args);
 	}

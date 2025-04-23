@@ -7,9 +7,17 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.controlsfx.control.Notifications;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import com.formeasy.domain.ResponseDTO;
+import com.formeasy.security.AuthSession;
 import com.google.api.services.forms.v1.FormsScopes;
 import com.google.api.services.gmail.GmailScopes;
 import com.google.api.services.people.v1.PeopleServiceScopes;
@@ -123,36 +131,84 @@ public class LoginController{
         		stage.close();
         		
         		try {
-					redirect.loadNewStage("Menu", "WelcomeView.fxml");
-					redirect.closeCurrentStage(btnLogin);
-				} catch (IOException e) {					
-					e.printStackTrace();
-				}
-    		} else {
-    			showNotification("Erro", "Nenhum código encontrado ainda...", false);
-    		} 
-    		
-    	});
+        			
+        			//Faz a requisição HTTP para o AuthController capturando o código de autorização (authCode) retornado pelo Google.
+                    ResponseEntity<ResponseDTO> response = fazerRequisicaoRegistroGoogle(authCode);
+
+                    if (response.getStatusCode() == HttpStatus.OK) {
+                        // Registro e autenticação bem-sucedidos
+                        String token = response.getBody().token();
+                        String userLogin = response.getBody().login();
+                        
+                        // Inicia a sessão buscando as credenciais no AuthSession
+                        AuthSession.setGoogleAccessToken(token);
+                        AuthSession.setUserLogin(userLogin);                                       
+
+                        // Redireciona para a próxima tela
+                        redirect.loadNewStage("Menu", "WelcomeView.fxml");
+                        redirect.closeCurrentStage(btnLoginGoogle);
+                    } else {
+                        showNotification("Erro", "Falha na autenticação com o Google.", false);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    showNotification("Erro", "Falha na autenticação com o Google.", false);
+                }
+            } else {
+                System.out.println("Nenhum código encontrado ainda...");
+            }
+        });
     }
-    	public void showNotification(String titulo, String mensagem, boolean sucesso) {
-            
-        	String imagePath = sucesso ? "/images/sucess.png" : "/images/error.png";
+    
+    
+  //Envia requisições HTTP para o backend para registro.
+    private ResponseEntity<ResponseDTO> fazerRequisicaoRegistroGoogle(String authCode) {
+        // Configuração do cliente HTTP
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
 
-            // Carregar imagens
-            Image image = new Image(getClass().getResource(imagePath).toExternalForm());
-            
-            ImageView imageViewStatus = new ImageView(image);
-            imageViewStatus.setFitWidth(50);
-            imageViewStatus.setFitHeight(50);
+        // Corpo da requisição
+        HttpEntity<String> request = new HttpEntity<>(authCode, headers);
 
-            // Criar e exibir a notificação
-            Notifications.create()
-                .title(titulo)
-                .text(mensagem)
-                .graphic(imageViewStatus) 
-                .position(Pos.BASELINE_RIGHT)  // Posição no canto inferior direito da tela
-                .hideAfter(Duration.seconds(5))  // Duração da notificação
-                .show();
+        ResponseEntity<ResponseDTO> response = restTemplate.postForEntity("http://localhost:8080/auth/registro", request, ResponseDTO.class);
+
+        if (response.getStatusCode() == HttpStatus.OK) {
+            ResponseDTO loginData = response.getBody();
+            System.out.println("Token gerado: " + loginData.token());
+            System.out.println("Login recebido: " + loginData.login());
+            System.out.println("Senha recebida: " + loginData.password());
         }
+
+        return response;
+    }
+
+    public void showNotification(String titulo, String mensagem, boolean sucesso) {
+        
+        String imagePath = sucesso ? "/images/sucess.png" : "/images/error.png";
+
+        // Carregar imagens
+        Image image = new Image(getClass().getResource(imagePath).toExternalForm());
+        
+        ImageView imageViewStatus = new ImageView(image);
+        if (sucesso) {
+            imageViewStatus.setFitWidth(50);  // Tamanho para imagem de sucesso
+            imageViewStatus.setFitHeight(50);
+        } else {
+            imageViewStatus.setFitWidth(80);  // Tamanho para imagem de erro
+            imageViewStatus.setFitHeight(80);
+        }
+        imageViewStatus.setPreserveRatio(true); 
+
+        // Criar e exibir a notificação
+        Notifications.create()
+              .title(titulo)
+              .text(mensagem)
+              .graphic(imageViewStatus) 
+              .position(Pos.BASELINE_RIGHT)  // Posição no canto inferior direito da tela
+              .hideAfter(Duration.seconds(5))  // Duração da notificação
+              .show();
+         }
+
     
 }

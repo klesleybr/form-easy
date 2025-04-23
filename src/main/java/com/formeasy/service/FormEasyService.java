@@ -13,6 +13,7 @@ import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.services.drive.model.File;
 import com.google.api.services.forms.v1.model.Form;
+import com.google.api.services.people.v1.model.Person;
 import com.google.api.services.sheets.v4.model.BatchGetValuesResponse;
 import com.google.api.services.sheets.v4.model.ValueRange;
 
@@ -54,4 +55,13 @@ public class FormEasyService {
 	public Form getForm(String formId) throws IOException, GeneralSecurityException{
 		return formEasyUtil.getForm(formId);
 	}
+	
+	public Person getUserInfoFromAuthCode(String authCode) throws Exception {
+	    
+		formEasyUtil.createCredentialFromAuthCode(authCode);
+	    return formEasyUtil.getPeopleService().people().get("people/me")
+	                     .setPersonFields("names,emailAddresses,photos").execute();
+	}
+	
 }
+

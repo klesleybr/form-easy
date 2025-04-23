@@ -7,6 +7,7 @@ import java.net.URI;
 import java.util.Optional;
 
 import com.formeasy.FormEasyProjectApplicationJavaFX;
+import com.formeasy.security.AuthSession;
 
 import javafx.application.HostServices;
 import javafx.application.Platform;
@@ -65,8 +66,12 @@ public class WelcomeController {
     private Label texto_sem_formulario;
     
     @FXML
-    public void inicialize() {
+    public void initialize() {
     	btnSair.setOnAction(e-> Sair());
+    	
+    	String login = AuthSession.getUserLogin();
+        texto_sem_formulario.setText("Olá, " + login + ", Seja Bem-vindo ao FormEasy!");
+        texto_sem_formulario.setStyle("-fx-font-size: 16px;");
     }
     
     public void Sair() {
@@ -85,9 +90,9 @@ public class WelcomeController {
    	 	Optional<ButtonType> result = alert.showAndWait();
 
    	 	if (result.isPresent() && result.get() == ButtonType.OK) {
-   		 Platform.exit();
+   	 		System.exit(0);
    	 	}else {
-   		 System.out.println("Saída cancelada");
+   	 		System.out.println("Saída cancelada");
    	    }
     }
     
