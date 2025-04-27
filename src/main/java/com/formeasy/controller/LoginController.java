@@ -18,11 +18,14 @@ import com.google.api.services.gmail.GmailScopes;
 import com.google.api.services.people.v1.PeopleServiceScopes;
 import com.google.api.services.sheets.v4.SheetsScopes;
 
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -122,23 +125,26 @@ public class LoginController{
         			
         			if(authCode.contains("&")) {
         				authCode = authCode.split("&")[0];
-        			}
-        			        			
-        			DashboardController dashboard = new DashboardController();        		        		
+        			}        			        			        			       		        	
         			        		       		
             		stage.close();
             		
+            		DashboardController dashboard = new DashboardController();
             		
             		Platform.runLater(() -> {
+            			
+            			
             			try {
             				while(User.getAuthenticate() == false) {
+            					            					
             					Thread.sleep(5000);
+            					
                 				try {
             						User.setNome(dashboard.getAttributesUser().get("name"));
             						User.setEmail(dashboard.getAttributesUser().get("email"));
             						User.setFotoPerfil(dashboard.getAttributesUser().get("userPhotoUrl"));
             						
-            						if(User.getNome() != null && User.getEmail() != null && User.getFotoPerfil() != null) {
+            						if(User.getNome() != null && User.getEmail() != null && User.getFotoPerfil() != null) {            							
             							User.setAuthenticate(true);
             						}    						
             					} catch (IOException | GeneralSecurityException e) {
@@ -146,9 +152,9 @@ public class LoginController{
             						e.printStackTrace();
             					}      				
                 			}
-                			
+                			            				
         					redirect.loadNewStage("Menu", "WelcomeView.fxml");
-        					redirect.closeCurrentStage(btnLogin);
+        					redirect.closeCurrentStage(btnLoginGoogle);
         				} catch (IOException e) {					
         					e.printStackTrace();
         				} catch (InterruptedException e1) {
@@ -166,8 +172,7 @@ public class LoginController{
     		
     		
     	}).start();
-    	
-    	
+    	    	
     }
     	public void showNotification(String titulo, String mensagem, boolean sucesso) {
             
@@ -189,5 +194,5 @@ public class LoginController{
                 .hideAfter(Duration.seconds(5))  // Duração da notificação
                 .show();
         }
-    
+    	
 }

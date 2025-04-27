@@ -21,13 +21,13 @@ import net.rgielen.fxweaver.core.FxWeaver;
 
 public class FormEasyProjectApplicationJavaFX extends Application {
 
-    private ConfigurableApplicationContext springContext;
+    private static ConfigurableApplicationContext springContext;
     private static FormEasyProjectApplicationJavaFX instance;
 
     @Override
     public void init() throws Exception {
         String[] args = getParameters().getRaw().toArray(new String[0]);
-        this.springContext = new SpringApplicationBuilder()
+        FormEasyProjectApplicationJavaFX.springContext = new SpringApplicationBuilder()
                 .sources(FormEasyProjectApplication.class)
                 .run(args);
         
@@ -89,8 +89,12 @@ public class FormEasyProjectApplicationJavaFX extends Application {
     	Optional<ButtonType> result = alert.showAndWait();
     	
     	if(result.isPresent() && result.get() == ButtonType.OK) {
-    		this.springContext.close();
+    		FormEasyProjectApplicationJavaFX.springContext.close();
     		Platform.exit();       		
     	}
+    }
+    
+    public static void closeSpring() {
+    	FormEasyProjectApplicationJavaFX.springContext.close();
     }
 }

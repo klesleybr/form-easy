@@ -8,7 +8,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="perfil" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.formeasy.controller.EnvioController">
@@ -43,7 +42,6 @@
       </AnchorPane>
       <AnchorPane prefHeight="95.0" prefWidth="800.0" style="-fx-background-color: #005099;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Circle fx:id="perfil" fill="WHITE" layoutX="756.0" layoutY="47.0" radius="27.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.rightAnchor="14.0" />
             <ImageView fitHeight="71.0" fitWidth="223.0" layoutX="14.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../images/logo-horizontal.png" />
@@ -51,7 +49,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <Button fx:id="btnAcessResp" contentDisplay="CENTER" layoutX="463.40000000000003" layoutY="29.0" mnemonicParsing="false" prefHeight="39.0" style="-fx-background-color: #FF5C00;" text="Analisar Respostas" textFill="WHITE" AnchorPane.rightAnchor="165.39999999999998">
+      <Button fx:id="btnAcessResp" contentDisplay="CENTER" layoutX="616.2" layoutY="29.0" mnemonicParsing="false" prefHeight="39.0" style="-fx-background-color: #FF5C00;" text="Analisar Respostas" textFill="WHITE" AnchorPane.rightAnchor="12.599999999999909">
          <font>
             <Font size="18.0" />
          </font>
@@ -59,15 +57,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="btnMenu" layoutX="374.20000000000005" layoutY="29.0" mnemonicParsing="false" onAction="#initialize" prefHeight="39.0" prefWidth="73.0" style="-fx-background-color: #FF5C00;" text="Menu" textFill="WHITE" AnchorPane.rightAnchor="352.19999999999993">
-         <font>
-            <Font size="18.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Button fx:id="btnSair" layoutX="638.0" layoutY="29.0" mnemonicParsing="false" prefHeight="39.0" style="-fx-background-color: #FF5C00;" text="Sair" textFill="WHITE" AnchorPane.rightAnchor="95.0">
+      <Button fx:id="btnMenu" layoutX="527.4" layoutY="29.0" mnemonicParsing="false" onAction="#initialize" prefHeight="39.0" prefWidth="73.0" style="-fx-background-color: #FF5C00;" text="Menu" textFill="WHITE" AnchorPane.rightAnchor="199.0">
          <font>
             <Font size="18.0" />
          </font>

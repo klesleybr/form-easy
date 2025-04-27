@@ -46,9 +46,6 @@ public class ShowAnswersController {
 	@FXML
 	private Button btnAcessEnvio;
 	
-	@FXML
-	private Button btnSair;
-	
     @FXML
     private Button btnSearchAnswers;
 
@@ -154,15 +151,13 @@ public class ShowAnswersController {
 	    void initialize() {
 	        tblShowAnswers.setPlaceholder(new Label("A tabela está vazia. Indique o formulário desejado e busque pelas respostas."));
 	        btnMenu.setOnAction(e-> voltarMenu());
-	        btnAcessEnvio.setOnAction(e-> AcessoEnvio());
-	        btnSair.setOnAction(e-> Sair());
-	        
+	        btnAcessEnvio.setOnAction(e-> AcessoEnvio());	        	       
 	    }
 	 
 	 @FXML
 	    public void voltarMenu() {
 	    	 try {
-	    	    redirect.loadNewStage("", "WelcomeView.fxml");
+	    	    redirect.loadNewStage("Menu", "WelcomeView.fxml");
 	    	    redirect.closeCurrentStage(btnMenu);
 	    	 } catch (IOException e) {
 	    		 System.out.println("Erro ao carregar a tela do menu: " + e.getMessage());
@@ -199,7 +194,8 @@ public class ShowAnswersController {
     	 Optional<ButtonType> result = alert.showAndWait();
 
     	 if (result.isPresent() && result.get() == ButtonType.OK) {
-    		 Platform.exit();
+    		 //Platform.exit();
+    		 System.exit(0);
     	 }else {
     		 System.out.println("Saída cancelada");
     	    }

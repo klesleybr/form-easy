@@ -19,6 +19,8 @@ import javafx.stage.FileChooser;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
+import com.formeasy.FormEasyProjectApplicationJavaFX;
 import com.formeasy.service.EmailService;
 import com.formeasy.service.ExcelService;
 
@@ -47,9 +49,6 @@ public class EnvioController {
     
     @FXML
     private Button btnAcessResp;
-    
-    @FXML 
-    private Button btnSair;
 
     @FXML
     private TextField TextAssunto;
@@ -74,8 +73,7 @@ public class EnvioController {
     @FXML
     public void initialize() {
     	btnMenu.setOnAction(e-> voltarMenu());
-    	btnAcessResp.setOnAction(e-> AcessoRespostas());
-    	btnSair.setOnAction(e-> Sair());
+    	btnAcessResp.setOnAction(e-> AcessoRespostas());    
         btnAdicionarArquivo.setOnAction(e-> adicionarArquivo());
         btnEnviar.setOnAction(e-> {
 			try {
@@ -120,15 +118,17 @@ public class EnvioController {
     	 
     	 Image logo = new Image(getClass().getResourceAsStream("/images/logo-quadrada2.png"));
     	 ImageView logoView = new ImageView(logo);
-    	 logoView.setFitWidth(20);
-    	 logoView.setFitHeight(20);
+    	 logoView.setFitWidth(10);
+    	 logoView.setFitHeight(10);
 
     	 alert.setGraphic(logoView);
 
     	 Optional<ButtonType> result = alert.showAndWait();
 
     	 if (result.isPresent() && result.get() == ButtonType.OK) {
-    		 Platform.exit();
+    		 //Platform.exit();
+    		 //FormEasyProjectApplicationJavaFX.closeSpring();
+    		 System.exit(0);
     	 }else {
     		 System.out.println("Saída cancelada");
     	    }

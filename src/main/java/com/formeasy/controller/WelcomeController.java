@@ -8,6 +8,7 @@ import java.security.GeneralSecurityException;
 import java.util.Map;
 import java.util.Optional;
 
+import org.controlsfx.control.Notifications;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.formeasy.FormEasyProjectApplicationJavaFX;
@@ -17,6 +18,7 @@ import javafx.application.HostServices;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -32,6 +34,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 
 public class WelcomeController {
@@ -59,12 +62,6 @@ public class WelcomeController {
 
     @FXML
     private Button btnOptionSend;
-    
-    @FXML
-    private Button btnSair;
-
-    @FXML
-    private Circle circulo_header;
 
     @FXML
     private ImageView formeasy_foto;
@@ -101,12 +98,8 @@ public class WelcomeController {
     
     @FXML
     public void initialize() throws IOException, GeneralSecurityException {
+    	    
     	
-    	
-    	// btnSair.setOnAction(e-> Sair());
-    	// btnExit.setOnAction(e -> Sair());
-    	
-    	//lblEmailUser.setText(this.emailUser);
     	lblEmailUser.setText(this.emailUser);
     	lblNameUser.setText(this.nameUser);
     	texto_sem_formulario.setText(String.format("Bem-vindo, %s! O que faremos hoje?", this.nameUser));
@@ -114,12 +107,7 @@ public class WelcomeController {
     	setImage();
     }
     
-    private void setImage() throws IOException, GeneralSecurityException {
-    	
-    	
-    	// imageUser.setLayoutX(1460);
-    	// imageUser.setLayoutY(22);
-    	// imageUser.onMouseClickedProperty(Event click -> ola);
+    private void setImage() throws IOException, GeneralSecurityException {    	   
     	
     	Rectangle clip = new Rectangle(imageUser.getFitWidth(), imageUser.getFitHeight());
     	clip.setArcWidth(imageUser.getFitWidth());
@@ -159,7 +147,9 @@ public class WelcomeController {
 
    	 	if (result.isPresent() && result.get() == ButtonType.OK) {
    	 	 User.limpar();
-   		 Platform.exit();
+   		 // Platform.exit();
+   	 	 System.exit(0);
+   		FormEasyProjectApplicationJavaFX.closeSpring();
    	 	}else {
    		 System.out.println("Saída cancelada");
    	    }
@@ -211,7 +201,7 @@ public class WelcomeController {
     	em FormEasyProjectApplicationJavaFX.java
     	*/
     	
-    }
+    }     
  
 
 }
