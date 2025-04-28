@@ -150,6 +150,13 @@
 		    <artifactId>google-api-services-gmail</artifactId>
 		    <version>v1-rev20240520-2.0.0</version>
 		</dependency>
+		
+		<dependency>
+		    <groupId>org.openjfx</groupId>
+		    <artifactId>javafx</artifactId>
+		    <version>22-ea+11</version>
+		    <type>pom</type>
+		</dependency>
 					
 	</dependencies>
 
