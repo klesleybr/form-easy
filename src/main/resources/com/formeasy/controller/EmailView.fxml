@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="perfil" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.formeasy.controller.EnvioController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.formeasy.controller.EnvioController">
    <children>
       <AnchorPane layoutX="71.0" layoutY="128.0" prefHeight="423.0" prefWidth="658.0" style="-fx-border-color: #A9A9A9; -fx-border-radius: 20px;" AnchorPane.bottomAnchor="49.0" AnchorPane.leftAnchor="71.0" AnchorPane.rightAnchor="71.0" AnchorPane.topAnchor="128.0">
          <children>
@@ -47,9 +47,17 @@
                   <Image url="@../../../images/logo-horizontal.png" />
                </image>
             </ImageView>
+            <Button fx:id="btnAjuda" layoutX="687.0" layoutY="28.0" mnemonicParsing="false" onAction="#ajuda" prefHeight="39.0" prefWidth="73.0" style="-fx-background-color: #FF5C00;" text="Ajuda" textFill="WHITE" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="28.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
          </children>
       </AnchorPane>
-      <Button fx:id="btnAcessResp" contentDisplay="CENTER" layoutX="616.2" layoutY="29.0" mnemonicParsing="false" prefHeight="39.0" style="-fx-background-color: #FF5C00;" text="Analisar Respostas" textFill="WHITE" AnchorPane.rightAnchor="12.599999999999909">
+      <Button fx:id="btnAcessResp" contentDisplay="CENTER" layoutX="616.2" layoutY="29.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="172.0" style="-fx-background-color: #FF5C00;" text="Analisar Respostas" textFill="WHITE" AnchorPane.rightAnchor="120.0">
          <font>
             <Font size="18.0" />
          </font>
@@ -57,7 +65,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="btnMenu" layoutX="527.4" layoutY="29.0" mnemonicParsing="false" onAction="#initialize" prefHeight="39.0" prefWidth="73.0" style="-fx-background-color: #FF5C00;" text="Menu" textFill="WHITE" AnchorPane.rightAnchor="199.0">
+      <Button fx:id="btnMenu" layoutX="527.4" layoutY="29.0" mnemonicParsing="false" onAction="#initialize" prefHeight="39.0" prefWidth="73.0" style="-fx-background-color: #FF5C00;" text="Menu" textFill="WHITE" AnchorPane.rightAnchor="300.0">
          <font>
             <Font size="18.0" />
          </font>

@@ -94,5 +94,13 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></ImageView>
+      <Button fx:id="btnAjuda" layoutX="573.0" layoutY="282.0" mnemonicParsing="false" onAction="#onClickBtnAjuda" prefHeight="39.0" prefWidth="73.0" style="-fx-background-color: #FF5C00;" text="Ajuda" textFill="WHITE" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="30.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>

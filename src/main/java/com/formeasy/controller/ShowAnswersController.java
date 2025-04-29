@@ -15,7 +15,6 @@ import com.google.api.services.forms.v1.model.Item;
 import com.google.api.services.forms.v1.model.Option;
 import com.google.api.services.sheets.v4.model.ValueRange;
 
-import javafx.application.Platform;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -51,6 +50,9 @@ public class ShowAnswersController {
 
     @FXML
     private Button btnSearchForms;
+    
+    @FXML
+    private Button btnAjuda;
 
     @FXML
     private ChoiceBox<File> cbxListForms;    
@@ -151,7 +153,8 @@ public class ShowAnswersController {
 	    void initialize() {
 	        tblShowAnswers.setPlaceholder(new Label("A tabela está vazia. Indique o formulário desejado e busque pelas respostas."));
 	        btnMenu.setOnAction(e-> voltarMenu());
-	        btnAcessEnvio.setOnAction(e-> AcessoEnvio());	        	       
+	        btnAcessEnvio.setOnAction(e-> AcessoEnvio());
+	        btnAjuda.setOnAction(e-> ajuda());
 	    }
 	 
 	 @FXML
@@ -200,6 +203,15 @@ public class ShowAnswersController {
     		 System.out.println("Saída cancelada");
     	    }
 	 }
+	 
+	 @FXML
+	 public void ajuda() {
+	    	try {
+	    	   redirect.loadWebViewStage("Ajuda", "/html/index.html");
+	    	} catch (IOException e) {
+	    	    e.printStackTrace();
+	    	}
+	    }
    
 	
     private void setValuesOnColumns(ObservableList<List<Object>> listValues) {

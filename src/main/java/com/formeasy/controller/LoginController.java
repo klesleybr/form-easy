@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.controlsfx.control.Notifications;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -18,14 +17,11 @@ import com.google.api.services.gmail.GmailScopes;
 import com.google.api.services.people.v1.PeopleServiceScopes;
 import com.google.api.services.sheets.v4.SheetsScopes;
 
-import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -39,8 +35,6 @@ import net.rgielen.fxweaver.core.FxmlView;
 
 @Component
 @FxmlView("LoginView.fxml")
-
-// Nova notação Service
 @Service
 public class LoginController{
 	RedirectController redirect = new RedirectController();
@@ -174,25 +168,33 @@ public class LoginController{
     	}).start();
     	    	
     }
-    	public void showNotification(String titulo, String mensagem, boolean sucesso) {
-            
-        	String imagePath = sucesso ? "/images/sucess.png" : "/images/error.png";
+    
+    public void showNotification(String titulo, String mensagem, boolean sucesso) {
+        
+        String imagePath = sucesso ? "/images/sucess.png" : "/images/error.png";
 
-            // Carregar imagens
-            Image image = new Image(getClass().getResource(imagePath).toExternalForm());
-            
-            ImageView imageViewStatus = new ImageView(image);
-            imageViewStatus.setFitWidth(50);
+        // Carregar imagens
+        Image image = new Image(getClass().getResource(imagePath).toExternalForm());
+        
+        ImageView imageViewStatus = new ImageView(image);
+        if (sucesso) {
+            imageViewStatus.setFitWidth(50);  // Tamanho para imagem de sucesso
             imageViewStatus.setFitHeight(50);
-
-            // Criar e exibir a notificação
-            Notifications.create()
-                .title(titulo)
-                .text(mensagem)
-                .graphic(imageViewStatus) 
-                .position(Pos.BASELINE_RIGHT)  // Posição no canto inferior direito da tela
-                .hideAfter(Duration.seconds(5))  // Duração da notificação
-                .show();
+        } else {
+            imageViewStatus.setFitWidth(80);  // Tamanho para imagem de erro
+            imageViewStatus.setFitHeight(80);
         }
+        imageViewStatus.setPreserveRatio(true); 
+
+        // Criar e exibir a notificação
+        Notifications.create()
+              .title(titulo)
+              .text(mensagem)
+              .graphic(imageViewStatus) 
+              .position(Pos.BASELINE_RIGHT)  // Posição no canto inferior direito da tela
+              .hideAfter(Duration.seconds(5))  // Duração da notificação
+              .show();
+         }    
+
     	
 }

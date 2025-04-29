@@ -52,7 +52,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </CheckBox>
-      <Button fx:id="btnMenu" layoutX="535.4" layoutY="29.0" mnemonicParsing="false" onAction="#initialize" prefHeight="39.0" style="-fx-background-color: #FF5C00;" text="Menu" textFill="WHITE" AnchorPane.rightAnchor="194.20000000000005">
+      <Button fx:id="btnMenu" layoutX="535.4" layoutY="29.0" mnemonicParsing="false" onAction="#initialize" prefHeight="39.0" style="-fx-background-color: #FF5C00;" text="Menu" textFill="WHITE" AnchorPane.rightAnchor="300.0">
          <font>
             <Font size="18.0" />
          </font>
@@ -60,7 +60,15 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="btnAcessEnvio" layoutX="622.5999999999999" layoutY="29.0" mnemonicParsing="false" prefHeight="39.0" style="-fx-background-color: #FF5C00;" text="Enviar Formulário" textFill="WHITE" AnchorPane.rightAnchor="14.200000000000045">
+      <Button fx:id="btnAcessEnvio" layoutX="622.5999999999999" layoutY="29.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="172.0" style="-fx-background-color: #FF5C00;" text="Enviar Formulário" textFill="WHITE" AnchorPane.rightAnchor="120.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="btnAjuda" layoutX="712.0" layoutY="541.0" mnemonicParsing="false" onAction="#ajuda" prefHeight="39.0" prefWidth="73.0" style="-fx-background-color: #FF5C00;" text="Ajuda" textFill="WHITE" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="28.0">
          <font>
             <Font size="18.0" />
          </font>

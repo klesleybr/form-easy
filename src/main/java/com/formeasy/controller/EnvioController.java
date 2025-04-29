@@ -11,7 +11,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -20,7 +19,6 @@ import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import com.formeasy.FormEasyProjectApplicationJavaFX;
 import com.formeasy.service.EmailService;
 import com.formeasy.service.ExcelService;
 
@@ -49,6 +47,9 @@ public class EnvioController {
     
     @FXML
     private Button btnAcessResp;
+    
+    @FXML
+    private Button btnAjuda;
 
     @FXML
     private TextField TextAssunto;
@@ -75,6 +76,7 @@ public class EnvioController {
     	btnMenu.setOnAction(e-> voltarMenu());
     	btnAcessResp.setOnAction(e-> AcessoRespostas());    
         btnAdicionarArquivo.setOnAction(e-> adicionarArquivo());
+        btnAjuda.setOnAction(e-> ajuda());
         btnEnviar.setOnAction(e-> {
 			try {
 				enviarEmails();
@@ -133,6 +135,15 @@ public class EnvioController {
     		 System.out.println("Saída cancelada");
     	    }
     }
+    
+    @FXML
+    public void ajuda() {
+    	try {
+	        redirect.loadWebViewStage("Ajuda", "/html/index.html");
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+    }
     	
     
     @FXML
@@ -144,7 +155,7 @@ public class EnvioController {
         if (selectedFile != null) {
         	showNotification("Sucesso", "Arquivo selecionado: " + selectedFile.getAbsolutePath(), true);
         } else {
-        	showNotification("Erro", "Nenhum arquivo selecionado.", false);
+        	showNotification("Aviso", "Nenhum arquivo selecionado.", false);
         }
         
         btnAdicionarArquivo.setOnMousePressed(event -> {
@@ -162,12 +173,12 @@ public class EnvioController {
     	    String descricao = TextMensagem.getText().trim();
 
     	    if (assunto.isEmpty()) {
-    	    	showNotification("Erro", "O assunto não pode estar vazio.", false);
+    	    	showNotification("Aviso", "O assunto não pode estar vazio.", false);
     	        return;
     	    }
 
     	    if (descricao.isEmpty()) {
-    	    	showNotification("Erro", "A mensagem não pode estar vazia.", false);
+    	    	showNotification("Aviso", "A mensagem não pode estar vazia.", false);
     	        return;
     	    }
 
@@ -196,23 +207,28 @@ public class EnvioController {
 
     public void showNotification(String titulo, String mensagem, boolean sucesso) {
         
-    	String imagePath = sucesso ? "/images/sucess.png" : "/images/error.png";
+        String imagePath = sucesso ? "/images/sucess.png" : "/images/error.png";
 
         // Carregar imagens
         Image image = new Image(getClass().getResource(imagePath).toExternalForm());
         
         ImageView imageViewStatus = new ImageView(image);
-        imageViewStatus.setFitWidth(50);
-        imageViewStatus.setFitHeight(50);
+        if (sucesso) {
+            imageViewStatus.setFitWidth(50);  // Tamanho para imagem de sucesso
+            imageViewStatus.setFitHeight(50);
+        } else {
+            imageViewStatus.setFitWidth(80);  // Tamanho para imagem de erro
+            imageViewStatus.setFitHeight(80);
+        }
+        imageViewStatus.setPreserveRatio(true); 
 
         // Criar e exibir a notificação
         Notifications.create()
-            .title(titulo)
-            .text(mensagem)
-            .graphic(imageViewStatus) 
-            .position(Pos.BASELINE_RIGHT)  // Posição no canto inferior direito da tela
-            .hideAfter(Duration.seconds(5))  // Duração da notificação
-            .show();
-    }
-
+              .title(titulo)
+              .text(mensagem)
+              .graphic(imageViewStatus) 
+              .position(Pos.BASELINE_RIGHT)  // Posição no canto inferior direito da tela
+              .hideAfter(Duration.seconds(5))  // Duração da notificação
+              .show();
+         }    
 }
