@@ -1,40 +1,25 @@
 package com.formeasy.controller;
 
-import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
 import java.security.GeneralSecurityException;
-import java.util.Map;
 import java.util.Optional;
 
-import org.controlsfx.control.Notifications;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.formeasy.FormEasyProjectApplicationJavaFX;
 import com.formeasy.model.User;
 
-import javafx.application.HostServices;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
-import javafx.stage.Stage;
-import javafx.util.Duration;
 
 
 public class WelcomeController {
@@ -97,6 +82,9 @@ public class WelcomeController {
     private Button btnExit;
     
     @FXML
+    private Button btnAjuda;
+    
+    @FXML
     public void initialize() throws IOException, GeneralSecurityException {
     	    
     	
@@ -138,8 +126,8 @@ public class WelcomeController {
    	 	
    	 	Image logo = new Image(getClass().getResourceAsStream("/images/logo-quadrada2.png"));
    	 	ImageView logoView = new ImageView(logo);
-   	 	//logoView.setFitWidth(20);
-   	 	// logoView.setFitHeight(20);
+   	 	logoView.setFitWidth(20);
+   	 	logoView.setFitHeight(20);
 
    	 	alert.setGraphic(logoView);
 
@@ -153,6 +141,16 @@ public class WelcomeController {
    	 	}else {
    		 System.out.println("Saída cancelada");
    	    }
+    }
+    
+    @FXML
+    void onClickBtnAjuda(ActionEvent event) {
+    	try {
+	        redirect.loadWebViewStage("Ajuda", "/html/index.html");
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+
     }
     
     @FXML

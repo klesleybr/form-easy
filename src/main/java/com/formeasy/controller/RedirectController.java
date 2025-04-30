@@ -1,11 +1,9 @@
 package com.formeasy.controller;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Optional;
 
-import org.springframework.context.ConfigurableApplicationContext;
-
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -14,12 +12,14 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 
-// Classe incompleta
-
 public class RedirectController {	
+	
 	public void loadNewStage(String title, String pathToView) throws IOException {		
 		Stage newStage = new Stage();
 
@@ -46,6 +46,34 @@ public class RedirectController {
 		
 		newStage.show();
 	}
+	
+	public void loadWebViewStage(String title, String pathToHtml) throws IOException {
+	    Stage newStage = new Stage();
+	    newStage.initModality(Modality.APPLICATION_MODAL);
+
+	    WebView webView = new WebView();
+	    WebEngine webEngine = webView.getEngine();
+
+	    URL url = getClass().getResource(pathToHtml);
+	    if (url != null) {
+	        webEngine.load(url.toExternalForm());
+	    } else {
+	        throw new IOException("Arquivo HTML não encontrado: " + pathToHtml);
+	    }
+
+	    Scene newScene = new Scene(webView);
+	    
+	    Image icon = new Image(getClass().getResourceAsStream("/images/logo-quadrada2.png"));
+	    newStage.getIcons().add(icon);
+	    newStage.setTitle(title);
+	    newStage.resizableProperty().setValue(Boolean.TRUE);
+		newStage.setMaximized(true);
+	    newStage.setResizable(true);
+	    newStage.setScene(newScene);
+
+	    newStage.show();
+	}
+
 	
 	public void closeCurrentStage(Node viewElement) {
 		Stage currentStage = (Stage) viewElement.getScene().getWindow();
