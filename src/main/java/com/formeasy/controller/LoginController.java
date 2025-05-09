@@ -131,7 +131,7 @@ public class LoginController{
             			try {
             				while(User.getAuthenticate() == false) {
             					            					
-            					Thread.sleep(5000);
+            					Thread.sleep(1000);
             					
                 				try {
             						User.setNome(dashboard.getAttributesUser().get("name"));
@@ -142,7 +142,6 @@ public class LoginController{
             							User.setAuthenticate(true);
             						}    						
             					} catch (IOException | GeneralSecurityException e) {
-            						// TODO Auto-generated catch block
             						e.printStackTrace();
             					}      				
                 			}
@@ -152,7 +151,6 @@ public class LoginController{
         				} catch (IOException e) {					
         					e.printStackTrace();
         				} catch (InterruptedException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}            		
             		});
